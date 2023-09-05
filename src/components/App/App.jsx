@@ -68,6 +68,8 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          
+
           <Route
             exact
             path="/login"
