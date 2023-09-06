@@ -20,6 +20,7 @@ import AddPetsPage from '../AddPetsPage/AddPetsPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import swal from 'sweetalert';
 
 import './App.css';
 
