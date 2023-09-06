@@ -41,6 +41,7 @@ function AddPetsPage() {
                             name='peturl'
                             placeholder='upload URL here'
                             value={petURL}
+                            required onChange={(event)=> setPetURL(event.target.value)}
                             />
                     </label>
                     <label htmlFor='petname'>
@@ -49,6 +50,7 @@ function AddPetsPage() {
                             type="text"
                             name="petname"
                             value={petName}
+                            required onChange={(event)=> setPetName(event.target.value)}
                         />
                     </label>
                     <label htmlFor='petbio'>
@@ -58,6 +60,7 @@ function AddPetsPage() {
                             name='petbio'
                             placeholder='include things like their age, breed, etc'
                             value={petBio}
+                            required onChange={(event)=> setPetBio(event.target.value)}
                         />
                     </label>
                 </div>
