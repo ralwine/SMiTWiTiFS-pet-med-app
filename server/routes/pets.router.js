@@ -9,32 +9,45 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const query = `SELECT * FROM pets ORDER BY "user_id"`;
-    pool.query(query)
-        .then(result => {
-            res.send(result.rows);
-        })
-        .catch(err => {
-            console.log('ERROR: Get user pets', err);
-            res.sendStatus(500)
-        })
+    if (req.isAuthenticated()) {
+        console.log('/pet GET route');
+        console.log('is authenticated?', req.isAuthenticated());
+        console.log('user', req.user);
+        let queryText = `SELECT * FROM pets where user_id =$1`;
+        pool.query(queryText, [req.user.id])
+            .then(result => {
+                res.send(result.rows);
+            })
+            .catch(err => {
+                console.log('ERROR: Get user pets', err);
+                res.sendStatus(500);
+            });
+        }else{
+            res.sendStatus(403);
+        }
+    
 })
 
-router.post('/', (req, res) => {
-    
-    const petDBInfo = req.body;
-    console.log("petDBInfo",petDBInfo);
+router.post('/', rejectUnauthenticated, (req, res) => {
+
+    console.log('/pet POST route');
+    console.log(req.body);
+    console.log('is authenticated?', req.isAuthenticated());
+    console.log('user', req.user);
+
     const sqlText = `
         INSERT INTO "pets" ("pet_name", "user_id", "pet_info", "pet_url")
         VALUES ($1,$2,$3,$4)`;
-    pool.query(sqlText,[
-        petDBInfo.pet_name,
-        petDBInfo.user_id,
-        petDBInfo.pet_info,
-        petDBInfo.pet_url
-    ]).then(result=>{
+    const sqlValues = [
+        req.body.pet_name,
+        req.user.id,
+        req.body.pet_info,
+        req.body.pet_url
+    ]
+    pool.query(sqlText, sqlValues)
+    .then(result => {
         res.sendStatus(201)
-    }).catch(error=>{
+    }).catch(error => {
         res.sendStatus(500)
     })
 
