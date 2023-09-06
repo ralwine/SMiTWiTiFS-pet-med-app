@@ -10,8 +10,8 @@ function UserPage() {
 
   const history = useHistory();
 
-  const navigateToPetInfoPage = () => {
-    history.push('/info'); // Use push to navigate to another page
+  const navigateToYourPetsPage = () => {
+    history.push('/yourPets'); // Use push to navigate to another page
   };
 
   return (
@@ -19,10 +19,12 @@ function UserPage() {
       <div className="container">
         <h2>Welcome, {user.username}!</h2>
         <p>Your ID is: {user.id}</p>
+      </div>
+      <div className='buttons'>
         <LogOutButton className="btn" />
       
       {/* add 'Continue" btn to navigate to Your Pets page */}
-      <button className='btn'onClick={navigateToPetInfoPage}>Continue</button>
+      <button className='btn'onClick={navigateToYourPetsPage}>Continue</button>
       </div>
       {/* <ProtectedRoute
         // logged in shows InfoPage else shows LoginPage
