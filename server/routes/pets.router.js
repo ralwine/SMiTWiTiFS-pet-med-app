@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
         console.log('/pet GET route');
         console.log('is authenticated?', req.isAuthenticated());
         console.log('user', req.user);
-        let queryText = `SELECT * FROM pets where user_id =$1`;
+        let queryText = `SELECT * FROM "pets" WHERE user_id=$1`;
         pool.query(queryText, [req.user.id])
             .then(result => {
                 res.send(result.rows);
@@ -22,10 +22,10 @@ router.get('/', (req, res) => {
                 console.log('ERROR: Get user pets', err);
                 res.sendStatus(500);
             });
-        }else{
-            res.sendStatus(403);
-        }
-    
+    } else {
+        res.sendStatus(403);
+    }
+
 })
 
 router.post('/', rejectUnauthenticated, (req, res) => {
@@ -33,23 +33,24 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('/pet POST route');
     console.log(req.body);
     console.log('is authenticated?', req.isAuthenticated());
-    console.log('user', req.user);
+    console.log('user', req.user.id);
 
     const sqlText = `
-        INSERT INTO "pets" ("pet_name", "user_id", "pet_info", "pet_url")
+        INSERT INTO "pets" (pet_name, user_id, pet_info, pet_url)
+        
         VALUES ($1,$2,$3,$4)`;
     const sqlValues = [
         req.body.pet_name,
-        req.user.id,
+        req.body.user_id,
         req.body.pet_info,
         req.body.pet_url
     ]
     pool.query(sqlText, sqlValues)
-    .then(result => {
-        res.sendStatus(201)
-    }).catch(error => {
-        res.sendStatus(500)
-    })
+        .then(result => {
+            res.sendStatus(201)
+        }).catch(error => {
+            res.sendStatus(500)
+        })
 
 })
 
