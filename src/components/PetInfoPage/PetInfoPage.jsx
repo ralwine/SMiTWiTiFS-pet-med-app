@@ -7,6 +7,7 @@ function PetInfoPage() {
 
     const history = useHistory();
 
+    // nav back to Your Pets page without saved changes
     const navigateToYourPetsPage = () => {
         history.push('/yourPets'); // Use push to navigate to another page
     };
@@ -14,7 +15,8 @@ function PetInfoPage() {
     return (
         <>
             <div>
-                {/* Pet image, name, bio and meds appending here */}
+                {/* Pet image, name, bio appending here*/}
+                <button className='btn'>Edit Info</button>
             </div>
             <div className='buttons'>
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
