@@ -8,6 +8,7 @@ function AddPetsPage() {
     const [petURL, setPetURL] = useState('');
     const [petName, setPetName] = useState('');
     const [petBio, setPetBio] = useState('');
+    const dispatch = useDispatch();
     const errors = useSelector((store) => store.errors);
     const history = useHistory();
 
@@ -24,6 +25,7 @@ function AddPetsPage() {
         })
     }
 
+    // nav back to Your Pets page without saved changes
     const navigateToYourPetsPage = () => {
         history.push('/yourPets'); // Use push to navigate to another page
     };

@@ -17,6 +17,9 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import AddPetsPage from '../AddPetsPage/AddPetsPage';
+import PetInfoPage from '../PetInfoPage/PetInfoPage';
+import MedInfoPage from '../MedInfoPage/MedInfoPage'
+import AddMedsPage from '../AddMedsPage/AddMedsPage'
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -63,7 +66,8 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Your Pets else shows LoginPage
+            // logged in shows Your Pets else shows LoginPage.
+            // This is synonymous with InfoPage!
             exact
             path="/yourPets"
           >
@@ -76,6 +80,30 @@ function App() {
             path="/addPets"
           >
             <AddPetsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Add Pets else shows LoginPage
+            exact
+            path="/petInfo"
+          >
+            <PetInfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Add Pets else shows LoginPage
+            exact
+            path="/medInfo"
+          >
+            <MedInfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows Add Pets else shows LoginPage
+            exact
+            path="/addMeds"
+          >
+            <AddMedsPage />
           </ProtectedRoute>
 
           
