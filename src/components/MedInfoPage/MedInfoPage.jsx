@@ -16,8 +16,18 @@ function MedInfoPage () {
         <>
          
          <div>
-            {/*  */}
+            {/* med name and instructions will append here */}
+            <button className='btn'>Edit Info</button>
+            {/* DELETE functionailty needed here w/ pop-up */}
+            <button className='btn'>Delete Medication</button>
          </div>
+         <div className='buttons'>
+                <button className='btn' onClick={navigateToPetInfoPage}>Back to Your Pets</button>
+                {/* PUT functionality to be handled by submit button */}
+                {/* Will also need pop-up! */}
+                <button className='btn'>Submit</button>
+            </div>
+
         </>
     )
 }
