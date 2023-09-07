@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-function AddMedsPage(){
+function AddMedsPage() {
 
     const [medName, setMedName] = useState('');
     const [medDetails, setMedDetails] = useState('');
@@ -27,6 +27,41 @@ function AddMedsPage(){
     const navigateToPetInfoPage = () => {
         history.push('/petInfo'); // Use push to navigate to another page
     };
+
+    return (
+        <>
+            <form className='formPanel' onSubmit={addNewMed}>
+                <h2>Add Med</h2>
+                <div>
+                    <label htmlFor='medName'>
+                        Medication or Supplement Name: 
+                        <input
+                            type='text'
+                            name='medName'
+                            placeholder='Name of medication'
+                            value={medName}
+                            required onChange={(event) => setMedName(event.target.value)}
+                        />
+                    </label>
+                    <label htmlFor='medDetails'>
+                        Instructions: 
+                        <input
+                            type='text'
+                            name='medDetails'
+                            placeholder='include things like dosage, type (pill, injection, etc), when to administer, etc.'
+                            value={medDetails}
+                            required onChange={(event) => setMedDetails(event.target.value)}
+                        />
+                    </label>
+                </div>
+            </form>
+            <div className='buttons'>
+                <button className='btn' onClick={navigateToPetInfoPage}>Back to Pet Info</button>
+                {/* need pop-up here and onChange event for POST */}
+                <button className='btn'>Submit</button>
+            </div>
+        </>
+    )
 
 }
 
