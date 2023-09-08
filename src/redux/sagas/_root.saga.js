@@ -2,8 +2,9 @@ import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
-import addpetsSaga from './addpets.saga';
-import yourpetsSaga from './yourpets.saga';
+import petsSaga from './pets.saga';
+//import addpetsSaga from './addpets.saga';
+//import yourpetsSaga from './yourpets.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -17,7 +18,8 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    addpetsSaga(),
-    yourpetsSaga(),
+    petsSaga(),
+    //addpetsSaga(),
+    //yourpetsSaga(),
   ]);
 }

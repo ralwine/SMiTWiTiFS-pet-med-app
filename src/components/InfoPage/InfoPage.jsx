@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import AddPetsPage from '../AddPetsPage/AddPetsPage';
 import swal from 'sweetalert';
@@ -9,12 +10,20 @@ import swal from 'sweetalert';
 
 function InfoPage() {
 
+  const yourPets = useSelector((store) => store.yourpets)
+  const dispatch = useDispatch()
   const history = useHistory();
+
+  console.log("infopage", yourPets)
   // GET pets
-  const fetchYourPets = (event) => {
-    event.preventDefault();
+  const fetchYourPets = () => {
+    //event.preventDefault();
+    console.log("infopage.jsx/yourpets: ", yourPets)
+    dispatch({type: 'SET_PETS', payload: yourPets})
+    
   }
 
+  
   const navigateToAddPetsPage = () => {
     history.push('/addPets'); // Use push to navigate to another page
   };
@@ -23,6 +32,7 @@ function InfoPage() {
     <>
       <div className="container">
         <p>Your Pets</p>
+        
         {/* {emotionsList.map((item, index) =>
                 <div className='feedbackInfo'>
                   <div key={index}>
