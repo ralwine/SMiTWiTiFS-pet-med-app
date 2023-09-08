@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function AddPetsPage() {
 
+    const userID = useSelector((store) => store.user)
     const [petURL, setPetURL] = useState('');
     const [petName, setPetName] = useState('');
     const [petBio, setPetBio] = useState('');
@@ -19,6 +20,7 @@ function AddPetsPage() {
         dispatch({
             type: 'ADD_NEW_PET',
             payload: {
+                userID: userID,
                 petURL: petURL,
                 petName: petName,
                 petBio: petBio,
@@ -44,8 +46,8 @@ function AddPetsPage() {
                             name='peturl'
                             placeholder='upload URL here'
                             value={petURL}
-                            required onChange={(event)=> setPetURL(event.target.value)}
-                            />
+                            required onChange={(event) => setPetURL(event.target.value)}
+                        />
                     </label>
                     <label htmlFor='petname'>
                         Pet Name:
@@ -53,7 +55,7 @@ function AddPetsPage() {
                             type="text"
                             name="petname"
                             value={petName}
-                            required onChange={(event)=> setPetName(event.target.value)}
+                            required onChange={(event) => setPetName(event.target.value)}
                         />
                     </label>
                     <label htmlFor='petbio'>
@@ -63,7 +65,7 @@ function AddPetsPage() {
                             name='petbio'
                             placeholder='include things like their age, breed, etc'
                             value={petBio}
-                            required onChange={(event)=> setPetBio(event.target.value)}
+                            required onChange={(event) => setPetBio(event.target.value)}
                         />
                     </label>
                 </div>
