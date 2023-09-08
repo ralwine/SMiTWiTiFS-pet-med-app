@@ -14,8 +14,9 @@ function AddPetsPage() {
 
     const addNewPet = (event) => {
         event.preventDefault();
+        console.log(petURL, petName, petBio)
 
-        dispatchEvent({
+        dispatch({
             type: 'ADD_NEW_PET',
             payload: {
                 petURL: petURL,
@@ -70,7 +71,7 @@ function AddPetsPage() {
             <div className='buttons'>
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
                 {/* need pop-up here and onChange event for POST */}
-                <button className='btn'>Submit</button>
+                <button className='btn' onClick={addNewPet}>Submit</button>
             </div>
         </>
     )
