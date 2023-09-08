@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import AddPetsPage from '../AddPetsPage/AddPetsPage';
@@ -10,20 +10,26 @@ import swal from 'sweetalert';
 
 function InfoPage() {
 
-  const yourPets = useSelector((store) => store.yourpets)
+  const yourPets = useSelector((store) => store.pets)
   const dispatch = useDispatch()
   const history = useHistory();
 
+  useEffect(() => {
+    // Fetch your pets when the component mounts
+    fetchYourPets();
+  }, []);
+
   console.log("infopage", yourPets)
+
   // GET pets
   const fetchYourPets = () => {
     //event.preventDefault();
     console.log("infopage.jsx/yourpets: ", yourPets)
-    dispatch({type: 'SET_PETS', payload: yourPets})
-    
+    dispatch({ type: 'SET_PETS', payload: yourPets })
+
   }
 
-  
+
   const navigateToAddPetsPage = () => {
     history.push('/addPets'); // Use push to navigate to another page
   };
@@ -32,17 +38,19 @@ function InfoPage() {
     <>
       <div className="container">
         <p>Your Pets</p>
-        
-        {/* {emotionsList.map((item, index) =>
-                <div className='feedbackInfo'>
-                  <div key={index}>
-                    <h3>{item.feeling_rating}</h3>
-                    <h3>{item.understanding_rating}</h3>
-                    <h3>{item.support_rating}</h3>
-                    <h3>{item.comments}</h3>
-                  </div>
-                </div>
-              )} */}
+
+
+        <div className='yourPets'>
+          {yourPets.map((pet, index) => (
+            <div key={index}>
+              <p>Pet URL: {pet.pet_url}</p>
+              <p>Pet Name: {pet.pet_name}</p>
+              <p>Pet Info: {pet.pet_info}</p>
+
+            </div>
+          ))}
+        </div>
+
       </div>
       <div className='buttons'>
         <button className='btn' onClick={navigateToAddPetsPage}>Add Pets</button>
