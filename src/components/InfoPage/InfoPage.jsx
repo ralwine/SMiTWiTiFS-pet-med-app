@@ -10,6 +10,10 @@ import swal from 'sweetalert';
 function InfoPage() {
 
   const history = useHistory();
+  // GET pets
+  const fetchYourPets = (event) => {
+    event.preventDefault();
+  }
 
   const navigateToAddPetsPage = () => {
     history.push('/addPets'); // Use push to navigate to another page

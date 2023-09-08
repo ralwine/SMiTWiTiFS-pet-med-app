@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function PetInfoPage() {
-
+//page for individual pet
     const history = useHistory();
 
     // nav back to Your Pets page without saved changes

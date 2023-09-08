@@ -15,15 +15,15 @@ function AddPetsPage() {
 
     const addNewPet = (event) => {
         event.preventDefault();
-        console.log(petURL, petName, petBio)
+        console.log(userID.id, petURL, petName, petBio)
 
         dispatch({
             type: 'ADD_NEW_PET',
             payload: {
-                userID: userID,
-                petURL: petURL,
                 petName: petName,
+                userID: userID.id,//just the id, not the name
                 petBio: petBio,
+                petURL: petURL,
             },
         })
     }

@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
 
     console.log('/pet POST route');
-    console.log(req.body);
+    console.log('req.body',req.body);
     console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user.id);
 
@@ -40,16 +40,17 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         
         VALUES ($1,$2,$3,$4)`;
     const sqlValues = [
-        req.body.pet_name,
-        req.body.user_id,
-        req.body.pet_info,
-        req.body.pet_url
+        req.body.petName,
+        req.user.id,
+        req.body.petBio,
+        req.body.petURL
     ]
     pool.query(sqlText, sqlValues)
         .then(result => {
             res.sendStatus(201)
         }).catch(error => {
             res.sendStatus(500)
+            console.log("problem here in router")
         })
 
 })
