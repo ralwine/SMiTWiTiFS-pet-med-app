@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
 
     console.log('/pet POST route');
-    console.log('req.body',req.body);
+    console.log('req.body', req.body);
     console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user.id);
 
@@ -50,9 +50,25 @@ router.post('/', rejectUnauthenticated, (req, res) => {
             res.sendStatus(201)
         }).catch(error => {
             res.sendStatus(500)
-            console.log("problem here in router")
+            console.log("problem here in router", error)
         })
 
 })
+
+// test this in POSTMAN
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+    
+    const petID = req.params.id;
+    console.log("petsrouter DELETE", petID)
+    const sqlText = `DELETE FROM "pets" WHERE "id"=$1`;
+
+    pool.query(sqlText, [petID])
+        .then(result => {
+            res.sendStatus(204)
+        }).catch((error) => {
+            console.log("problem w/DELETE in petsRouter", error)
+            res.sendStatus(500)
+        })
+});
 
 module.exports = router;
