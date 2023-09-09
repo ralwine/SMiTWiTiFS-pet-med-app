@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, call, takeLatest } from 'redux-saga/effects';
 
 function* addPets(action) {
     console.log(action.payload)
@@ -24,9 +24,20 @@ function* fetchPets() {
     }
 }
 
+function* deletePet(action){
+    try{
+        yield call(axios.delete, `/api/pets${action.payload}`)
+        console.log("in DELETEpetSAGA", action.payload)
+        yield put({type: 'DELETE_PET_SUCCESS', payload: action.payload})
+    } catch(error){
+        yield put({type: 'DELETE_PET_FAILURE', payload: error.message})
+    }
+}
+
 function* petsSaga() {
     yield takeLatest('ADD_NEW_PET', addPets)
     yield takeLatest('FETCH_PETS', fetchPets)
+    yield takeLatest('DELETE_PET', deletePet)
 }
 
 export default petsSaga;

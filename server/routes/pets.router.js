@@ -57,7 +57,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 // test this in POSTMAN
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    
+
     const petID = req.params.id;
     console.log("petsrouter DELETE", petID)
     const sqlText = `DELETE FROM "pets" WHERE "id"=$1`;
@@ -67,6 +67,31 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
             res.sendStatus(204)
         }).catch((error) => {
             console.log("problem w/DELETE in petsRouter", error)
+            res.sendStatus(500)
+        })
+});
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+
+    const petID = req.params.id;
+    const newPetInfo = req.body.newPetInfo;
+    console.log("in petsRouter PUT", petID, newPetInfo)
+    
+    const sqlText = `
+        UPDATE "pets" SET "pet_info" =$1
+        WHERE "id" =$2 AND "user_id" = $3`;
+    const sqlValues = [newPetInfo, petID, req.user.id];
+    console.log("in petsRouter PUT", petID, newPetInfo, req.user.id)
+
+    pool.query(sqlText, sqlValues)
+        .then((result) =>{
+            if(res.rowCount === 1) {
+                res.sendStatus(200);
+            }else{
+                res.sendStatus(404);
+            }
+        }).catch((error)=>{
+            console.error("problem w/PUT in petsRouter", error)
             res.sendStatus(500)
         })
 });
