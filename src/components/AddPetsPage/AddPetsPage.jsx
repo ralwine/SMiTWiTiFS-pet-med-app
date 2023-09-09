@@ -41,6 +41,7 @@ function AddPetsPage() {
                 <div>
                     <label htmlFor='peturl'>
                         Pet Image:
+                        {/* wrap the image in anchor tags */}
                         <input
                             type='url'
                             name='peturl'

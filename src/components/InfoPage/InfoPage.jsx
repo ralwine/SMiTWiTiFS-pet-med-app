@@ -43,7 +43,11 @@ function InfoPage() {
         <div className='yourPets'>
           {yourPets.map((pet, index) => (
             <div key={index}>
-              <p>Pet URL: {pet.pet_url}</p>
+              {/* Make the pet image clickable to nav to petInfo page */}
+              {/* <p>Pet URL: {pet.pet_url}</p> */}
+              <a href={`/petInfo/${pet.id}`}>
+                <img src={pet.pet_url} alt={pet.pet_name} />
+              </a>
               <p>Pet Name: {pet.pet_name}</p>
               <p>Pet Info: {pet.pet_info}</p>
 

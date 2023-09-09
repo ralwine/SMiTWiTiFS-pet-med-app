@@ -15,7 +15,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import InfoPage from '../InfoPage/InfoPage';//aka YourPets page
 import AddPetsPage from '../AddPetsPage/AddPetsPage';
 import PetInfoPage from '../PetInfoPage/PetInfoPage';
 import MedInfoPage from '../MedInfoPage/MedInfoPage'
@@ -83,7 +83,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Add Pets else shows LoginPage
+            
             exact
             path="/petInfo"
           >
@@ -91,7 +91,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Add Pets else shows LoginPage
+            
             exact
             path="/medInfo"
           >
@@ -99,7 +99,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows Add Pets else shows LoginPage
+            
             exact
             path="/addMeds"
           >

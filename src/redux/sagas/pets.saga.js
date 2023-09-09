@@ -28,9 +28,9 @@ function* deletePet(action){
     try{
         yield call(axios.delete, `/api/pets${action.payload}`)
         console.log("in DELETEpetSAGA", action.payload)
-        yield put({type: 'DELETE_PET_SUCCESS', payload: action.payload})
+        yield put({type: 'FETCH_YOUR_PET', payload: action.payload})
     } catch(error){
-        yield put({type: 'DELETE_PET_FAILURE', payload: error.message})
+       console.log('error in deletePet saga', error)
     }
 }
 
