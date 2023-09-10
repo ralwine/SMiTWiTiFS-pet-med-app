@@ -28,6 +28,38 @@ router.get('/', (req, res) => {
 
 })
 
+router.get('/:id', (req, res) => {
+    if (req.isAuthenticated()) {
+        console.log('/pet GETiD route');
+        console.log('is authenticated?', req.isAuthenticated());
+        console.log('user', req.user);
+        const petID = req.params.id;
+        let queryText = 
+            `SELECT
+                pets.id,
+                pets.pet_name,
+                pets.user_id,
+                pet.pet_info,
+                pet.pet_url
+            FROM pets
+            WHERE pets.id =$1  
+                `
+        pool.query(queryText, [petID])
+            .then(results => {
+                console.log('server /:id GET working', results)
+                res.send(results.rows[0]);
+            })
+            .catch(err => {
+                console.log('ERROR: Get pet info in rotuer', err);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(403);
+    }
+
+})
+
+
 router.post('/', rejectUnauthenticated, (req, res) => {
 
     console.log('/pet POST route');
@@ -50,7 +82,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
             res.sendStatus(201)
         }).catch(error => {
             res.sendStatus(500)
-            console.log("problem here in router", error)
+            console.log("problem here in petsrouter", error)
         })
 
 })
