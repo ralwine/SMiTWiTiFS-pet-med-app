@@ -13,6 +13,10 @@ function PetInfoPage() {
         history.push('/yourPets'); // Use push to navigate to another page
     };
 
+    const navigateToAddMedsPage = () => {
+        history.push('/addMeds')
+    };
+
     return (
         <>
             <div>
@@ -31,7 +35,7 @@ function PetInfoPage() {
 
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
 
-                <button className='btn'>Add Medication</button>
+                <button className='btn' onClick={navigateToAddMedsPage}>Add Medication</button>
                 <button className='btn'>Delete Pet</button>
             </div>
         </>

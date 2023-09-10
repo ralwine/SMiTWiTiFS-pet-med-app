@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 import swal from 'sweetalert';
 
@@ -51,9 +51,9 @@ function YourPetsPage() {
               <div key={index}>
                 {/* Make the pet image clickable to nav to petInfo page */}
                 {/* <p>Pet URL: {pet.pet_url}</p> */}
-                <a href={`/petInfo/${pet.id}`}>
+                <Link to={`/petInfo/${pet.id}`}>
                   <img src={pet.pet_url} alt={pet.pet_name} />
-                </a>
+                </Link>
                 <p>Pet Name: {pet.pet_name}</p>
             
   
