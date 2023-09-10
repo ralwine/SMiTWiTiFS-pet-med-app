@@ -18,12 +18,22 @@ function YourPetsPage() {
     console.log("infopage", yourPets)
   
     // GET pets
-    const fetchYourPets = async () => {
-      //event.preventDefault();
-      console.log("infopage.jsx/yourpets: ", yourPets)
-      dispatch({ type: 'SET_PETS', payload: yourPets })
+    // const fetchYourPets =  () => {
+    //   //event.preventDefault();
+    //   console.log("infopage.jsx/yourpets: ", yourPets)
+    //   dispatch({ type: 'SET_PETS', payload: yourPets })
   
-    }
+    // }
+
+    const fetchYourPets = async () => {
+        try {
+          const response = await fetch('/api/pets'); // Replace with your API endpoint
+          const data = await response.json();
+          dispatch({ type: 'SET_PETS', payload: data });
+        } catch (error) {
+          console.error('Error fetching pets:', error);
+        }
+      };
   
   
     const navigateToAddPetsPage = () => {
@@ -33,7 +43,7 @@ function YourPetsPage() {
     return (
       <>
         <div className="container">
-          <p>Your Pets</p>
+          <h2><b>Your Pets</b></h2>
   
   
           <div className='yourPets'>
@@ -45,7 +55,7 @@ function YourPetsPage() {
                   <img src={pet.pet_url} alt={pet.pet_name} />
                 </a>
                 <p>Pet Name: {pet.pet_name}</p>
-                <p>Pet Info: {pet.pet_info}</p>
+            
   
               </div>
             ))}

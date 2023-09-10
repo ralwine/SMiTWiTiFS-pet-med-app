@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import swal from 'sweetalert';
 
 function AddPetsPage() {
 
@@ -13,22 +14,52 @@ function AddPetsPage() {
     const errors = useSelector((store) => store.errors);
     const history = useHistory();
 
+    // const addNewPet = (event) => {
+    //     event.preventDefault();
+    //     console.log(userID.id, petURL, petName, petBio)
+
+    //     dispatch({
+    //         type: 'ADD_NEW_PET',
+    //         payload: {
+    //             petName: petName,
+    //             userID: userID.id,//just the id, not the name
+    //             petBio: petBio,
+    //             petURL: petURL,
+    //         },
+    //     })
+
+    //     history.push(`/petInfo/${petURL}/${petName}/${petBio}`);
+    // }
+
     const addNewPet = (event) => {
         event.preventDefault();
-        console.log(userID.id, petURL, petName, petBio)
-
-        dispatch({
-            type: 'ADD_NEW_PET',
-            payload: {
+    
+        // Use SweetAlert to show a confirmation dialog
+        swal({
+          title: 'Are you sure?',
+          text: 'Do you want to add this pet?',
+          icon: 'warning',
+          buttons: ['Cancel', 'Add Pet'],
+          dangerMode: false,
+        }).then((willAdd) => {
+          if (willAdd) {
+            // If the user clicks "Add Pet" in the SweetAlert dialog, proceed with adding the pet
+            dispatch({
+              type: 'ADD_NEW_PET',
+              payload: {
                 petName: petName,
-                userID: userID.id,//just the id, not the name
+                userID: userID.id,
                 petBio: petBio,
                 petURL: petURL,
-            },
-        })
-
-        history.push(`/petInfo/${petURL}/${petName}/${petBio}`);
-    }
+              },
+            });
+    
+            history.push(`/petInfo/${petURL}/${petName}/${petBio}`);
+          } else {
+            // If the user clicks "Cancel" or closes the dialog, do nothing
+          }
+        });
+      };
 
     // nav back to Your Pets page without saved changes
     const navigateToYourPetsPage = () => {
