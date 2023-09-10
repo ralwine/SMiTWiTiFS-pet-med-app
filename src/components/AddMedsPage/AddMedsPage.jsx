@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import swal from 'sweetalert';
 
 function AddMedsPage() {
 
@@ -14,11 +15,25 @@ function AddMedsPage() {
     const addNewMed = (event) => {
         event.preventDefault();
 
-        dispatchEvent({
-            type: 'ADD_NEW_MED',
-            payload: {
-                medName: medName,
-                medDetails: medDetails,
+        swal({
+            title: 'Are you sure?',
+            text: 'Do you want to add this medication?',
+            icon: 'warning',
+            buttons: ['Cancel', 'Add Medication'],
+            dangerMode: false,
+        }).then((willAdd) => {
+            if (willAdd) {
+                dispatch({
+                    type: 'ADD_NEW_MED',
+                    payload: {
+                        medName: medName,
+                        medDetails: medDetails,
+                    }
+                })
+
+                history.push(`/petInfo/${medName}/${medDetails}`)
+            } else {
+
             }
         })
     }
@@ -34,7 +49,7 @@ function AddMedsPage() {
                 <h2>Add Med</h2>
                 <div>
                     <label htmlFor='medName'>
-                        Medication or Supplement Name: 
+                        Medication or Supplement Name:
                         <input
                             type='text'
                             name='medName'
@@ -44,7 +59,7 @@ function AddMedsPage() {
                         />
                     </label>
                     <label htmlFor='medDetails'>
-                        Instructions: 
+                        Instructions:
                         <input
                             type='text'
                             name='medDetails'

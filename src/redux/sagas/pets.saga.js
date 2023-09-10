@@ -24,6 +24,15 @@ function* fetchPets() {
     }
 }
 
+function* fetchYourPet() {
+    try {
+        const response = yield axios.get('/api/pets/:id')
+        yield put({type: 'SET_PETS', payload:response.data})
+    } catch (error){
+        console.log('Pet request failed', error)
+    }
+}
+
 function* deletePet(action){
     try{
         yield call(axios.delete, `/api/pets${action.payload}`)
@@ -38,6 +47,7 @@ function* petsSaga() {
     yield takeLatest('ADD_NEW_PET', addPets)
     yield takeLatest('FETCH_PETS', fetchPets)
     yield takeLatest('DELETE_PET', deletePet)
+    yield takeLatest('FETCH_YOUR_PET', fetchYourPet)
 }
 
 export default petsSaga;

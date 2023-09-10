@@ -2,11 +2,29 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import YourPetsPage from '../YourPetsPage/YourPetsPage'
+import swal from 'sweetalert';
 
 function PetInfoPage() {
     //page for individual pet
+    const dispatch = useDispatch()
     const history = useHistory();
-    const { petName, petBio, petURL } = useParams();
+    const { petID, petName, petBio, petURL } = useParams();
+
+    useEffect(() => {
+        // Fetch your pets when the component mounts
+        fetchIndividualPet();
+      }, [petID]);
+
+    const fetchIndividualPet = async () =>{
+        try{
+            const response = await fetch('/api/pets/:id')
+            const data = await response.json();
+            dispatch({type: 'FETCH_YOUR_PET'})
+        } catch (error){
+         console.error('Error fetching individual pet: ',error)
+    }
+    }
 
     // nav back to Your Pets page without saved changes
     const navigateToYourPetsPage = () => {
