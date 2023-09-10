@@ -27,7 +27,7 @@ function AddPetsPage() {
             },
         })
 
-        history.push('petInfo');
+        history.push(`/petInfo/${petURL}/${petName}/${petBio}`);
     }
 
     // nav back to Your Pets page without saved changes

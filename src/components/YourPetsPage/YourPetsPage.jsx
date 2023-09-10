@@ -18,7 +18,7 @@ function YourPetsPage() {
     console.log("infopage", yourPets)
   
     // GET pets
-    const fetchYourPets = () => {
+    const fetchYourPets = async () => {
       //event.preventDefault();
       console.log("infopage.jsx/yourpets: ", yourPets)
       dispatch({ type: 'SET_PETS', payload: yourPets })

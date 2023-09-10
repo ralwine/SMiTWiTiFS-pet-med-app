@@ -86,7 +86,7 @@ function App() {
           <ProtectedRoute
             
             exact
-            path="/petInfo"
+            path="/petInfopet"
           >
             <PetInfoPage />
           </ProtectedRoute>
