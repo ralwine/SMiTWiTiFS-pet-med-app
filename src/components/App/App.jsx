@@ -15,7 +15,8 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';//aka YourPets page
+//import InfoPage from '../InfoPage/InfoPage';//aka YourPets page
+import YourPetsPage from '../YourPetsPage/YourPetsPage'
 import AddPetsPage from '../AddPetsPage/AddPetsPage';
 import PetInfoPage from '../PetInfoPage/PetInfoPage';
 import MedInfoPage from '../MedInfoPage/MedInfoPage'
@@ -71,7 +72,7 @@ function App() {
             exact
             path="/yourPets"
           >
-            <InfoPage />
+            <YourPetsPage />
           </ProtectedRoute>
 
           <ProtectedRoute

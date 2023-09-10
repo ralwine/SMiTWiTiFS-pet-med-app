@@ -19,9 +19,11 @@ function PetInfoPage() {
                 <button className='btn'>Edit Info</button>
             </div>
             <div className='buttons'>
+                
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
 
                 <button className='btn'>Add Medication</button>
+                <button className='btn'>Delete Pet</button>
             </div>
         </>
     );

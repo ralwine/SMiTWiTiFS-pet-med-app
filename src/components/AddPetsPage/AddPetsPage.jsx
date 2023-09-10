@@ -26,6 +26,8 @@ function AddPetsPage() {
                 petURL: petURL,
             },
         })
+
+        history.push('petInfo');
     }
 
     // nav back to Your Pets page without saved changes
