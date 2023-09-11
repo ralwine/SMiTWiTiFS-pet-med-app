@@ -5,6 +5,7 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min
 import YourPetsPage from '../YourPetsPage/YourPetsPage'
 import swal from 'sweetalert';
 import { DeletePet } from './DeletePet';
+import { EditPetInfo } from './EditPetInfo';
 
 function PetInfoPage() {
     //page for individual pet
@@ -12,23 +13,34 @@ function PetInfoPage() {
     const dispatch = useDispatch()
     const history = useHistory();
     const { id } = useParams();
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
         // Fetch your pets when the component mounts
         fetchIndividualPet();
-      }, [id]);
+    }, [id]);
     //Define state variables to store pet data
-    const fetchIndividualPet = async () =>{
+    const fetchIndividualPet = async () => {
         try {
             const response = await fetch(`/api/pets/${id}`); // Replace with your API endpoint
-            
+
             const data = await response.json();
             console.log("in fetchIndPet: ", data)
             dispatch({ type: 'SET_PET', payload: data });
-          } catch (error) {
+        } catch (error) {
             console.error('Error fetching pet:', error);
-          }
+        }
     }
+
+    const handleEditClick = () => {
+        setIsEditing(true);
+    };
+
+    const handleSavePetInfo = (editedPetData) => {
+        // Dispatch an action to update the pet info in the Redux store.
+        dispatch({ type: 'UPDATE_PET_INFO', payload: editedPetData });
+        setIsEditing(false); // Exit edit mode
+    };
 
     // nav back to Your Pets page without saved changes
     const navigateToYourPetsPage = () => {
@@ -41,18 +53,25 @@ function PetInfoPage() {
 
     return (
         <>
-            <div>
-                <h2><b>{individualPet.pet_name}</b></h2>
-            </div>
-            <div>
-                {/* Pet image, name, bio appending here*/}
-                <img src={individualPet.pet_url} alt={individualPet.pet_name} />
-            </div>
-            <div>
-                <h3>Here are some things about me:</h3>
-                <p>{individualPet.pet_info}</p>
-                <button className='btn'>Edit Info</button>
-            </div>
+            {isEditing ? (
+                <EditPetInfo individualPet={individualPet} onSave={handleSavePetInfo} />
+            ) : (
+                <div>
+                    <div>
+                        {/* Pet image, name, bio appending here*/}
+                        <img src={individualPet.pet_url} alt={individualPet.pet_name} />
+                    </div>
+
+                    <div>
+                        <h2><b>{individualPet.pet_name}</b></h2>
+                    </div>
+                    <div>
+                        <h3>Here are some things about me:</h3>
+                        <p>{individualPet.pet_info}</p>
+                        <button className='btn' onClick={handleEditClick}>Edit Info</button>
+                    </div>
+                </div>)}
+            
             <div className='buttons'>
 
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
@@ -65,5 +84,6 @@ function PetInfoPage() {
 }
 
 export default PetInfoPage;
+
 
 
