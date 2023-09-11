@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import YourPetsPage from '../YourPetsPage/YourPetsPage'
 import swal from 'sweetalert';
+import { DeletePet } from './DeletePet';
 
 function PetInfoPage() {
     //page for individual pet
@@ -15,7 +16,7 @@ function PetInfoPage() {
     useEffect(() => {
         // Fetch your pets when the component mounts
         fetchIndividualPet();
-      }, []);
+      }, [id]);
     //Define state variables to store pet data
     const fetchIndividualPet = async () =>{
         try {
@@ -45,11 +46,11 @@ function PetInfoPage() {
             </div>
             <div>
                 {/* Pet image, name, bio appending here*/}
-                <img src={id} alt={id} />
+                <img src={individualPet.pet_url} alt={individualPet.pet_name} />
             </div>
             <div>
                 <h3>Here are some things about me:</h3>
-                <p>{id}</p>
+                <p>{individualPet.pet_info}</p>
                 <button className='btn'>Edit Info</button>
             </div>
             <div className='buttons'>
@@ -57,10 +58,12 @@ function PetInfoPage() {
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
 
                 <button className='btn' onClick={navigateToAddMedsPage}>Add Medication</button>
-                <button className='btn'>Delete Pet</button>
+                <DeletePet />
             </div>
         </>
     )
 }
 
 export default PetInfoPage;
+
+
