@@ -8,7 +8,8 @@ export function EditPetInfo({ individualPet, onSave }) {
         setEditedInfo({ ...editedInfo, [name]: value });
     };
 
-    const handleSave = () => {
+    const handleSave = (e) => {
+        e.preventDefault()
         onSave(editedInfo);
     };
     return <>

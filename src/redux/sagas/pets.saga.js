@@ -36,7 +36,7 @@ function* fetchYourPet(action) {
 function* updatePetInfo(action) {
     try {
         console.log("in PUTpetSAGA", action.payload)
-        yield axios.put(`/api/pets/${action.payload.id}`)
+        yield axios.put(`/api/pets/${action.payload.id}`, action.payload )
         
         yield put({ type: 'EDIT_PET_INFO', payload: action.payload })
     } catch(error) {

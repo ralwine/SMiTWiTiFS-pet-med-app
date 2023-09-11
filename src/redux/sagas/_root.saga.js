@@ -19,7 +19,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     petsSaga(),
-    //addpetsSaga(),
+    //medicationsSaga(),
     //yourpetsSaga(),
   ]);
 }

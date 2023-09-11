@@ -54,4 +54,20 @@ router.post('/', rejectUnauthenticated, (req, res) =>{
 
 })
 
+// test this in POSTMAN
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+
+    const medID = req.params.id;
+    console.log("petsrouter DELETE", medID)
+    const sqlText = `DELETE FROM "medications" WHERE "id"=$1`;
+
+    pool.query(sqlText, [medID])
+        .then(result => {
+            res.sendStatus(204)
+        }).catch((error) => {
+            console.log("problem w/DELETE in medsRouter", error)
+            res.sendStatus(500)
+        })
+});
+
 module.exports = router

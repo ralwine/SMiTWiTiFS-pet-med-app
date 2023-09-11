@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 
 function AddMedsPage() {
 
+    const petID = useSelector((store) => store.pets)
     const [medName, setMedName] = useState('');
     const [medDetails, setMedDetails] = useState('');
     const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function AddMedsPage() {
                 dispatch({
                     type: 'ADD_NEW_MED',
                     payload: {
+                        petID: petID,
                         medName: medName,
                         medDetails: medDetails,
                     }
