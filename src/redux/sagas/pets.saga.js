@@ -35,7 +35,7 @@ function* fetchYourPet(action) {
 
 function* deletePet(action){
     try{
-        yield call(axios.delete, `/api/pets${action.payload}`)
+        yield axios.delete (`/api/pets/${action.payload}`)
         console.log("in DELETEpetSAGA", action.payload)
         yield put({type: 'FETCH_YOUR_PET', payload: action.payload})
     } catch(error){

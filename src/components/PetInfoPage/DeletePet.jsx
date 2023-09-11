@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 
 export function DeletePet() {
 
-    const individualPet = useSelector((store) => store.petinfo);
+    const pet = useSelector((store) => store.petinfo);
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
@@ -23,10 +23,10 @@ export function DeletePet() {
         }).then((willAdd) => {
             if (willAdd) {
                 // If the user clicks "Delete Pet" in the SweetAlert dialog, proceed with deleting the pet
-                console.log("in Delete")
+                console.log("in Delete", pet.id, pet)
                 dispatch({
                     type: 'DELETE_PET',
-                    payload: id.data
+                    payload: pet.id
                 })
                 // Redirect to YourPetsPage
                 history.push('/yourpets')
