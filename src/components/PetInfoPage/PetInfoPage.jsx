@@ -36,9 +36,13 @@ function PetInfoPage() {
         setIsEditing(true);
     };
 
-    const handleSavePetInfo = (editedPetData) => {
+    const handleSavePetInfo = (editedPetInfo) => {
         // Dispatch an action to update the pet info in the Redux store.
-        dispatch({ type: 'UPDATE_PET_INFO', payload: editedPetData });
+        console.log("in handleSave", editedPetInfo)
+        dispatch({ 
+            type: 'UPDATE_PET_INFO', 
+            payload: editedPetInfo 
+        });
         setIsEditing(false); // Exit edit mode
     };
 

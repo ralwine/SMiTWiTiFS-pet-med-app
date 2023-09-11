@@ -1,6 +1,6 @@
-const petinfoReducer = (state = [], action) => {
+const editpetinfoReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_PET':
+        case 'EDIT_PET_INFO':
             return action.payload
         
         default:
@@ -9,4 +9,4 @@ const petinfoReducer = (state = [], action) => {
 
 }
 
-export default petinfoReducer;
+export default editpetinfoReducer;

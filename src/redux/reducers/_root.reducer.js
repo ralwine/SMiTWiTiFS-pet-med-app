@@ -3,6 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 import pets from './pets.reducer'
 import petinfo from './petinfo.reducer';
+import editpetinfo from './editpetinfo.reducer';
 //import addpets from './addpets.reducer'
 //import yourpets from './yourpets.reducer'
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   pets,
   petinfo,
+  editpetinfo,
   //addpets,
   //yourpets,
 });
