@@ -7,12 +7,27 @@ import swal from 'sweetalert';
 
 function PetInfoPage() {
     //page for individual pet
+    const individualPet = useSelector((store) => store.petinfo)
     const dispatch = useDispatch()
     const history = useHistory();
-    const { petName, petBio, petURL } = useParams();
+    const { id } = useParams();
 
+    useEffect(() => {
+        // Fetch your pets when the component mounts
+        fetchIndividualPet();
+      }, []);
     //Define state variables to store pet data
-    
+    const fetchIndividualPet = async () =>{
+        try {
+            const response = await fetch(`/api/pets/${id}`); // Replace with your API endpoint
+            
+            const data = await response.json();
+            console.log("in fetchIndPet: ", data)
+            dispatch({ type: 'SET_PET', payload: data });
+          } catch (error) {
+            console.error('Error fetching pet:', error);
+          }
+    }
 
     // nav back to Your Pets page without saved changes
     const navigateToYourPetsPage = () => {
@@ -26,15 +41,15 @@ function PetInfoPage() {
     return (
         <>
             <div>
-                <h2><b>{petName}</b></h2>
+                <h2><b>{individualPet.pet_name}</b></h2>
             </div>
             <div>
                 {/* Pet image, name, bio appending here*/}
-                <img src={petURL} alt={petName} />
+                <img src={id} alt={id} />
             </div>
             <div>
                 <h3>Here are some things about me:</h3>
-                <p>{petBio}</p>
+                <p>{id}</p>
                 <button className='btn'>Edit Info</button>
             </div>
             <div className='buttons'>

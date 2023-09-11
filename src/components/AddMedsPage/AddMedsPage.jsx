@@ -31,7 +31,7 @@ function AddMedsPage() {
                     }
                 })
 
-                history.push(`/petInfo/${medName}/${medDetails}`)
+                history.push(`/medInfo/${medName}/${medDetails}`)
             } else {
 
             }
@@ -73,7 +73,7 @@ function AddMedsPage() {
             <div className='buttons'>
                 <button className='btn' onClick={navigateToPetInfoPage}>Back to Pet Info</button>
                 {/* need pop-up here and onChange event for POST */}
-                <button className='btn'>Submit</button>
+                <button className='btn' onClick={addNewMed}>Submit</button>
             </div>
         </>
     )

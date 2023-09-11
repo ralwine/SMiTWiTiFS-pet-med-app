@@ -24,10 +24,10 @@ function* fetchPets() {
     }
 }
 
-function* fetchYourPet() {
+function* fetchYourPet(action) {
     try {
-        const response = yield axios.get('/api/pets/:id')
-        yield put({type: 'SET_PETS', payload:response.data})
+        const response = yield axios.get(`/api/pets/${action.payload}`)
+        yield put({type: 'SET_PET', payload:response.data})
     } catch (error){
         console.log('Pet request failed', error)
     }
