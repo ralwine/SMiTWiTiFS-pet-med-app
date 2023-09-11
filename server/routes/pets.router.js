@@ -39,8 +39,8 @@ router.get('/:id', (req, res) => {
                 pets.id,
                 pets.pet_name,
                 pets.user_id,
-                pet.pet_info,
-                pet.pet_url
+                pets.pet_info,
+                pets.pet_url
             FROM pets
             WHERE pets.id =$1  
                 `
@@ -105,8 +105,9 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
 router.put('/:id', rejectUnauthenticated, (req, res) => {
 
+    console.log("hey", req.params, req.body)
     const petID = req.params.id;
-    const newPetInfo = req.body.newPetInfo;
+    const newPetInfo = req.body.pet_info;
     console.log("in petsRouter PUT", petID, newPetInfo)
     
     const sqlText = `

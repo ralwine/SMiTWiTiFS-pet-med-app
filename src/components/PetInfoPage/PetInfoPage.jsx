@@ -9,22 +9,10 @@ function PetInfoPage() {
     //page for individual pet
     const dispatch = useDispatch()
     const history = useHistory();
-    const { petID, petName, petBio, petURL } = useParams();
+    const { petName, petBio, petURL } = useParams();
 
-    useEffect(() => {
-        // Fetch your pets when the component mounts
-        fetchIndividualPet();
-      }, [petID]);
-
-    const fetchIndividualPet = async () =>{
-        try{
-            const response = await fetch('/api/pets/:id')
-            const data = await response.json();
-            dispatch({type: 'FETCH_YOUR_PET'})
-        } catch (error){
-         console.error('Error fetching individual pet: ',error)
-    }
-    }
+    //Define state variables to store pet data
+    
 
     // nav back to Your Pets page without saved changes
     const navigateToYourPetsPage = () => {
@@ -57,8 +45,7 @@ function PetInfoPage() {
                 <button className='btn'>Delete Pet</button>
             </div>
         </>
-    );
-
+    )
 }
 
 export default PetInfoPage;
