@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, useParams, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import YourPetsPage from '../YourPetsPage/YourPetsPage'
 import swal from 'sweetalert';
 import { DeletePet } from './DeletePet';
@@ -39,9 +39,9 @@ function PetInfoPage() {
     const handleSavePetInfo = (editedPetInfo) => {
         // Dispatch an action to update the pet info in the Redux store.
         console.log("in handleSave", editedPetInfo)
-        dispatch({ 
-            type: 'UPDATE_PET_INFO', 
-            payload: editedPetInfo 
+        dispatch({
+            type: 'UPDATE_PET_INFO',
+            payload: editedPetInfo
         });
         setIsEditing(false); // Exit edit mode
     };
@@ -75,12 +75,13 @@ function PetInfoPage() {
                         <button className='btn' onClick={handleEditClick}>Edit Info</button>
                     </div>
                 </div>)}
-            
+
             <div className='buttons'>
 
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
-
-                <button className='btn' onClick={navigateToAddMedsPage}>Add Medication</button>
+                <Link to={`/addMeds/${id}`}>
+                    <button className='btn' onClick={navigateToAddMedsPage}>Add Medication</button>
+                </Link>
                 <DeletePet />
             </div>
         </>

@@ -94,7 +94,7 @@ function App() {
           <ProtectedRoute
             
             exact
-            path="/medInfo"
+            path="/medInfo/:id"
           >
             <MedInfoPage />
           </ProtectedRoute>
@@ -102,7 +102,7 @@ function App() {
           <ProtectedRoute
             
             exact
-            path="/addMeds"
+            path="/addMeds/:id"
           >
             <AddMedsPage />
           </ProtectedRoute>

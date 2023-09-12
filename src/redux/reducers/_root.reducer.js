@@ -4,6 +4,7 @@ import user from './user.reducer';
 import pets from './pets.reducer'
 import petinfo from './petinfo.reducer';
 import editpetinfo from './editpetinfo.reducer';
+import resetpetinfo from './resetpetinfo.reducer'
 //import addpets from './addpets.reducer'
 //import yourpets from './yourpets.reducer'
 
@@ -19,7 +20,7 @@ const rootReducer = combineReducers({
   pets,
   petinfo,
   editpetinfo,
-  //addpets,
+  resetpetinfo,
   //yourpets,
 });
 

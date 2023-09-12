@@ -44,6 +44,15 @@ function* updatePetInfo(action) {
     }
 }
 
+function* fetchPetInfo(action){
+    try{
+        const response = yield axios.get(`/api/pets/${action.payload}`)
+        yield put({type: 'RESET_PET', payload:response.data})
+    } catch(error) {
+        console.log("reset info failed in saga", error)
+    }
+}
+
 function* deletePet(action) {
     try {
         yield axios.delete(`/api/pets/${action.payload}`)
@@ -60,6 +69,7 @@ function* petsSaga() {
     yield takeLatest('DELETE_PET', deletePet)
     yield takeLatest('FETCH_YOUR_PET', fetchYourPet)
     yield takeLatest('UPDATE_PET_INFO', updatePetInfo)
+    yield takeLatest('FETCH_PET_INFO', fetchPetInfo)
 }
 
 export default petsSaga;

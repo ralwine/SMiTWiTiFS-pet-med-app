@@ -50,7 +50,7 @@ router.get('/:id', (req, res) => {
                 res.send(results.rows[0]);
             })
             .catch(err => {
-                console.log('ERROR: Get pet info in rotuer', err);
+                console.log('ERROR: Get pet info in router', err);
                 res.sendStatus(500);
             });
     } else {
