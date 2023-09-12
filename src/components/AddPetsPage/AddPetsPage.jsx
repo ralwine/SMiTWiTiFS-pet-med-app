@@ -107,11 +107,14 @@ function AddPetsPage() {
                         />
                     </label>
                 </div>
+                <div>
+                    {/* need pop-up here and onChange event for POST */}
+                    <button className='formBtn' onClick={addNewPet}>Submit</button>
+                </div>
             </form>
             <div className='buttons'>
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
-                {/* need pop-up here and onChange event for POST */}
-                <button className='btn' onClick={addNewPet}>Submit</button>
+
             </div>
         </>
     )

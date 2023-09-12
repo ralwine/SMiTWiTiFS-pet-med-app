@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 export function EditPetInfo({ individualPet, onSave }) {
@@ -16,21 +16,27 @@ export function EditPetInfo({ individualPet, onSave }) {
 
         dispatch({ type: 'FETCH_PET_INFO' });
     };
+
     
+
 
     // textarea allows for flexible edit box!
     return <>
-        <form>
-            <label htmlFor='petBio'>Pet Bio</label>
-            <textarea
-                id="petBio"
-                name="pet_info"
-                value={editedInfo.pet_info}
-                onChange={handleInputChange}
-            />
-            <button className="btn" onClick={handleSave}>
-                Save
-            </button>
+        <form className='formPanel'>
+            <div>
+                <label htmlFor='petBio'>Pet Bio</label>
+                <textarea
+                    id="petBio"
+                    name="pet_info"
+                    value={editedInfo.pet_info}
+                    onChange={handleInputChange}
+                />
+            </div>
+            <div>
+                <button className="formBtn" onClick={handleSave}>
+                    Save
+                </button>
+            </div>
         </form>
 
     </>;

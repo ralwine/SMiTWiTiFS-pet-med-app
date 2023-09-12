@@ -3,6 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import petsSaga from './pets.saga';
+import medicationsSaga from './medications.saga'
 //import addpetsSaga from './addpets.saga';
 //import yourpetsSaga from './yourpets.saga';
 
@@ -19,7 +20,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     petsSaga(),
-    //medicationsSaga(),
+    medicationsSaga(),
     //yourpetsSaga(),
   ]);
 }

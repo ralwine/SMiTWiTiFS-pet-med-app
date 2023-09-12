@@ -38,6 +38,7 @@ Button
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
+  
 }
 
 .btn_sizeMin {
@@ -97,14 +98,34 @@ Form Treatment
 -------------------------------------------------------------------------------- */
 
 .formPanel {
+  
   box-sizing: border-box;
   width: 400px;
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: #e2e06d;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+}
+
+.formBtn{
+  /* display: inline-block; */
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-color: #014041;
+  border-width: 1px 1px 3px;
+  border-radius: 4px;
+  background-color: #00acb0;
+  color: #f8f8f8;
+  font-size: 1rem;
+  outline: 0;
+  cursor: pointer;
+}
+
+.formBtn:hover {
+  background-color: #008183;
+  text-decoration: none;
 }
 
 input {

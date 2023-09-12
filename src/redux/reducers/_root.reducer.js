@@ -5,6 +5,7 @@ import pets from './pets.reducer'
 import petinfo from './petinfo.reducer';
 import editpetinfo from './editpetinfo.reducer';
 import resetpetinfo from './resetpetinfo.reducer'
+import medications from './medications.reducer'
 //import addpets from './addpets.reducer'
 //import yourpets from './yourpets.reducer'
 
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   petinfo,
   editpetinfo,
   resetpetinfo,
+  medications,
   //yourpets,
 });
 

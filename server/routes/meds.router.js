@@ -33,15 +33,16 @@ router.post('/', rejectUnauthenticated, (req, res) =>{
     console.log('/med POST route');
     console.log('req.body', req.body);
     console.log('is authenticated?', req.isAuthenticated());
-    console.log('user', req.user.id);
+    console.log('user', req.user.id, req.body.petID);
+    
 
     const sqlText = `
         INSERT INTO "medications" (pet_id, med_name, instructions)
         
         VALUES ($1, $2, $3)`;
     const sqlValues = [
-        req.body.petID,
-        req.body.medName,
+        req.body.pet_id,
+        req.body.med_name,
         req.body.instructions
     ]
     pool.query(sqlText, sqlValues)

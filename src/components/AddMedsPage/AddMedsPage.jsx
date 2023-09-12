@@ -1,18 +1,20 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import swal from 'sweetalert';
 
 function AddMedsPage() {
 
-    const petID = useSelector((store) => store.pets)
+    const petID = useSelector((store) => store.petinfo)
     const [medName, setMedName] = useState('');
     const [medDetails, setMedDetails] = useState('');
     const dispatch = useDispatch();
     const errors = useSelector((store) => store.errors);
     const history = useHistory();
+    
 
+    console.log('petID: ', petID.id)
     const addNewMed = (event) => {
         event.preventDefault();
 
@@ -27,22 +29,23 @@ function AddMedsPage() {
                 dispatch({
                     type: 'ADD_NEW_MED',
                     payload: {
-                        petID: petID,
-                        medName: medName,
-                        medDetails: medDetails,
+                        pet_id: petID.id,
+                        med_name: medName,
+                        instuctions: medDetails,
                     }
                 })
 
-                history.push(`/medInfo/${petID}/${medName}/${medDetails}`)
+                history.push(`/medInfo/${petID.id}/${medName}/${medDetails}`)
             } else {
 
             }
         })
     }
-
+    
+    
     // nav back to Pet Info page without saved changes
     const navigateToPetInfoPage = () => {
-        history.push('/petInfo'); // Use push to navigate to another page
+        history.push('petInfo'); // Use push to navigate to another page
     };
 
     return (
@@ -73,11 +76,15 @@ function AddMedsPage() {
                         />
                     </label>
                 </div>
+                <div>
+                    {/* need pop-up here and onChange event for POST */}
+                    <button className='formBtn' onClick={addNewMed}>Submit</button>
+                </div>
             </form>
             <div className='buttons'>
-                <button className='btn' onClick={navigateToPetInfoPage}>Back to Pet Info</button>
-                {/* need pop-up here and onChange event for POST */}
-                <button className='btn' onClick={addNewMed}>Submit</button>
+                <Link to={`/petInfo${petID}`}>
+                    <button className='btn' onClick={navigateToPetInfoPage}>Back to Pet Info</button>
+                </Link>
             </div>
         </>
     )
