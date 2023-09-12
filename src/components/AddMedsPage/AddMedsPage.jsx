@@ -33,7 +33,7 @@ function AddMedsPage() {
                     }
                 })
 
-                history.push(`/medInfo/${medName}/${medDetails}`)
+                history.push(`/medInfo/${petID}/${medName}/${medDetails}`)
             } else {
 
             }
@@ -60,6 +60,8 @@ function AddMedsPage() {
                             required onChange={(event) => setMedName(event.target.value)}
                         />
                     </label>
+                </div>
+                <div>
                     <label htmlFor='medDetails'>
                         Instructions:
                         <input

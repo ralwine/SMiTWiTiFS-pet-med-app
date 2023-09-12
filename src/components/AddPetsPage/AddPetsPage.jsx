@@ -33,33 +33,33 @@ function AddPetsPage() {
 
     const addNewPet = (event) => {
         event.preventDefault();
-    
+
         // Use SweetAlert to show a confirmation dialog
         swal({
-          title: 'Are you sure?',
-          text: 'Do you want to add this pet?',
-          icon: 'warning',
-          buttons: ['Cancel', 'Add Pet'],
-          dangerMode: false,
+            title: 'Are you sure?',
+            text: 'Do you want to add this pet?',
+            icon: 'warning',
+            buttons: ['Cancel', 'Add Pet'],
+            dangerMode: false,
         }).then((willAdd) => {
-          if (willAdd) {
-            // If the user clicks "Add Pet" in the SweetAlert dialog, proceed with adding the pet
-            dispatch({
-              type: 'ADD_NEW_PET',
-              payload: {
-                petName: petName,
-                userID: userID.id,
-                petBio: petBio,
-                petURL: petURL,
-              },
-            });
-    
-            history.push(`/petInfo/${petURL}/${petName}/${petBio}`);
-          } else {
-            // If the user clicks "Cancel" or closes the dialog, do nothing
-          }
+            if (willAdd) {
+                // If the user clicks "Add Pet" in the SweetAlert dialog, proceed with adding the pet
+                dispatch({
+                    type: 'ADD_NEW_PET',
+                    payload: {
+                        petName: petName,
+                        userID: userID.id,
+                        petBio: petBio,
+                        petURL: petURL,
+                    },
+                });
+
+                history.push(`/petInfo/${petURL}/${petName}/${petBio}`);
+            } else {
+                // If the user clicks "Cancel" or closes the dialog, do nothing
+            }
         });
-      };
+    };
 
     // nav back to Your Pets page without saved changes
     const navigateToYourPetsPage = () => {
@@ -83,6 +83,8 @@ function AddPetsPage() {
                             required onChange={(event) => setPetURL(event.target.value)}
                         />
                     </label>
+                </div>
+                <div>
                     <label htmlFor='petname'>
                         Pet Name:
                         <input
@@ -92,8 +94,10 @@ function AddPetsPage() {
                             required onChange={(event) => setPetName(event.target.value)}
                         />
                     </label>
+                </div>
+                <div>
                     <label htmlFor='petbio'>
-                        Write short bio about your pet!
+                        Write a short bio about your pet!
                         <input
                             type='text'
                             name='petbio'

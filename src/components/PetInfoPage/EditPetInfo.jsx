@@ -18,7 +18,7 @@ export function EditPetInfo({ individualPet, onSave }) {
     };
     
 
-    
+    // textarea allows for flexible edit box!
     return <>
         <form>
             <label htmlFor='petBio'>Pet Bio</label>
