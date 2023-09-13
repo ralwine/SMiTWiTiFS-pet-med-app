@@ -5,9 +5,30 @@ function* addMeds(action) {
     console.log(action.payload)
     try{
         const newMed = yield axios.post('/api/medications', action.payload)
-        yield put({ type: 'SET_MEDS' })
+        yield put({ type: 'FETCH_MEDS' })
+        console.log("in addPets.saga", newMed.data)
+
     }catch (error) {
         console.log("error in addmeds.saga")
+    }
+}
+
+function* fetchMeds(){
+    try{
+        const response = yield axios.get('/api/medications')
+        yield put({ type: 'SET_MEDS', payload: response.data})
+    } catch (error){
+        console.log('Med request failed', error)
+    }
+}
+
+function* deleteMed(action) {
+    try {
+        yield axios.delete(`/api/medications/${action.payload}`)
+        console.log("in DELETEpetSAGA", action.payload)
+        yield put({ type: 'FETCH_YOUR_MED', payload: action.payload })
+    } catch (error) {
+        console.log('error in deleteMed saga', error)
     }
 }
 
@@ -15,6 +36,8 @@ function* addMeds(action) {
 
 function* medicationsSaga(){
     yield takeLatest('ADD_NEW_MED', addMeds)
+    yield takeLatest('FETCH_MEDS', fetchMeds)
+    yield takeLatest('DELETE_MED', deleteMed)
 }
 
 export default medicationsSaga;

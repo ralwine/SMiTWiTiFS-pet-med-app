@@ -4,11 +4,9 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 function* addPets(action) {
     console.log(action.payload)
     try {
-
-
         const newPet = yield axios.post('/api/pets', action.payload)
         yield put({ type: 'FETCH_PETS' })
-        console.log(newPet.data)
+        console.log("in addPets.saga", newPet.data)
 
     } catch (error) {
         console.log("error in addpets.saga")

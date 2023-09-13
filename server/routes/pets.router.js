@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
                 `
         pool.query(queryText, [petID])
             .then(results => {
-                console.log('server /:id GET working', results)
+                console.log('server /:id GET working')
                 res.send(results.rows[0]);
             })
             .catch(err => {

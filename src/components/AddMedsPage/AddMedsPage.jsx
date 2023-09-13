@@ -12,7 +12,7 @@ function AddMedsPage() {
     const dispatch = useDispatch();
     const errors = useSelector((store) => store.errors);
     const history = useHistory();
-    
+
 
     console.log('petID: ', petID.id)
     const addNewMed = (event) => {
@@ -31,7 +31,7 @@ function AddMedsPage() {
                     payload: {
                         pet_id: petID.id,
                         med_name: medName,
-                        instuctions: medDetails,
+                        instructions: medDetails,
                     }
                 })
 
