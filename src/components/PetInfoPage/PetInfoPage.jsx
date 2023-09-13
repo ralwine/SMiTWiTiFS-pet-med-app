@@ -6,7 +6,6 @@ import YourPetsPage from '../YourPetsPage/YourPetsPage'
 import swal from 'sweetalert';
 import { DeletePet } from './DeletePet';
 import { EditPetInfo } from './EditPetInfo';
-import {YourPetMeds} from './YourPetMeds'
 
 function PetInfoPage() {
     //page for individual pet
@@ -76,9 +75,6 @@ function PetInfoPage() {
                         <button className='btn' onClick={handleEditClick}>Edit Info</button>
                     </div>
                 </div>)}
-            <div>
-                <YourPetMeds />
-            </div>
 
             <div className='buttons'>
 
@@ -93,4 +89,6 @@ function PetInfoPage() {
 }
 
 export default PetInfoPage;
+
+
 

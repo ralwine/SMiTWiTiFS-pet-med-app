@@ -8,26 +8,28 @@ const userStrategy = require('../strategies/user.strategy');
 
 const router = express.Router();
 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
-    console.log("in medsrouterGEt", req.params.id)
-    
+router.get('/:id', (req, res) => {
+    console.log("in medsrouterGEt", req.body.pet_id)
+    //if (req.isAuthenticated()) {
         console.log('/medications GET route');
         console.log('is authenticated?', req.isAuthenticated());
         console.log('pet_id', req.body.pet_id);
 
         let queryText = `SELECT * FROM "medications" WHERE pet_id=$1`;
         
-        console.log("in meds.routerGET: ", req.body)
-        pool.query(queryText, [req.params.id])
+        console.log("in meds.routerGET: ", req.body.pet_id)
+        pool.query(queryText, [req.body.pet_id])
             .then(result => {
                 res.send(result.rows);
-                console.log("result.rows", result.rows)
             })
             .catch(err => {
                 console.log('ERROR: Get pet meds', err);
                 res.sendStatus(500);
             });
-    
+    // } else {
+    //     res.sendStatus(403);
+    // }
+
 })
 
 router.post('/', rejectUnauthenticated, (req, res) => {
