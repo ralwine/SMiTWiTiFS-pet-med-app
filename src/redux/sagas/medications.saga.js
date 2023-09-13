@@ -13,9 +13,10 @@ function* addMeds(action) {
     }
 }
 
-function* fetchMeds(){
+function* fetchMeds(action){
     try{
-        const response = yield axios.get('/api/medications')
+        const response = yield axios.get(`/api/medications/${action.payload}`)
+        console.log("response in saga", response)
         yield put({ type: 'SET_MEDS', payload: response.data})
     } catch (error){
         console.log('Med request failed', error)

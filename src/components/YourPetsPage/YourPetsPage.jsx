@@ -51,7 +51,7 @@ function YourPetsPage() {
               <div key={index}>
                 {/* Make the pet image clickable to nav to petInfo page */}
                 {/* <p>Pet URL: {pet.pet_url}</p> */}
-                <Link to={`/petInfo/${pet.id}`}>
+                <Link to={`/petInfo/${pet.id}/${pet.petName}/${pet.petBio}/${pet.petURL}`}>
                   <img src={pet.pet_url} alt={pet.pet_name} />
                 </Link>
                 <p>Pet Name: {pet.pet_name}</p>
