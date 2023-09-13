@@ -35,7 +35,7 @@ function AddMedsPage() {
                     }
                 })
 
-                history.push(`/medInfo/${petID.id}/${medName}/${medDetails}`)
+                history.push(`/petInfo/${petID.id}/${medName}/${medDetails}`)
             } else {
 
             }
@@ -45,7 +45,7 @@ function AddMedsPage() {
     
     // nav back to Pet Info page without saved changes
     const navigateToPetInfoPage = () => {
-        history.push('petInfo'); // Use push to navigate to another page
+        history.push(`/petInfo/${petID.id}`); // Use push to navigate to another page
     };
 
     return (
@@ -82,7 +82,7 @@ function AddMedsPage() {
                 </div>
             </form>
             <div className='buttons'>
-                <Link to={`/petInfo${petID}`}>
+                <Link to={`/petInfo/${petID.id}`}>
                     <button className='btn' onClick={navigateToPetInfoPage}>Back to Pet Info</button>
                 </Link>
             </div>

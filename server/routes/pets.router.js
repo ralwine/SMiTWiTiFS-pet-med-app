@@ -30,9 +30,9 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     if (req.isAuthenticated()) {
-        console.log('/pet GETiD route');
-        console.log('is authenticated?', req.isAuthenticated());
-        console.log('user', req.user);
+        // console.log('/pet GETiD route');
+        // console.log('is authenticated?', req.isAuthenticated());
+        // console.log('user', req.user);
         const petID = req.params.id;
         let queryText = 
             `SELECT

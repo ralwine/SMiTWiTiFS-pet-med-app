@@ -9,17 +9,21 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+    console.log("in medsrouterGEt")
     if (req.isAuthenticated()) {
-        console.log('/pet GET route');
+        console.log('/medications GET route');
         console.log('is authenticated?', req.isAuthenticated());
         console.log('user', req.user);
+
         let queryText = `SELECT * FROM "medications" WHERE pet_id=$1`;
-        pool.query(queryText, [req.user.id])
+        const petID = req.params.id
+        console.log("in meds.routerGET: ", petID)
+        pool.query(queryText, [petID])
             .then(result => {
                 res.send(result.rows);
             })
             .catch(err => {
-                console.log('ERROR: Get user pets', err);
+                console.log('ERROR: Get pet meds', err);
                 res.sendStatus(500);
             });
     } else {
@@ -28,13 +32,13 @@ router.get('/', (req, res) => {
 
 })
 
-router.post('/', rejectUnauthenticated, (req, res) =>{
+router.post('/', rejectUnauthenticated, (req, res) => {
 
     console.log('/med POST route');
     console.log('req.body', req.body);
     console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user.id, req.body.petID);
-    
+
 
     const sqlText = `
         INSERT INTO "medications" (pet_id, med_name, instructions)
@@ -46,9 +50,9 @@ router.post('/', rejectUnauthenticated, (req, res) =>{
         req.body.instructions
     ]
     pool.query(sqlText, sqlValues)
-        .then(result =>{
+        .then(result => {
             res.sendStatus(201)
-        }).catch(error =>{
+        }).catch(error => {
             res.sendStatus(500)
             console.log("problem here in medsrouter", error)
         })
