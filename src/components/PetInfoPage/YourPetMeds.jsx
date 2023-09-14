@@ -11,21 +11,7 @@ export function YourPetMeds() {
     const dispatch = useDispatch()
     const history = useHistory();
 
-    // useEffect(() => {
-    //     // Fetch your pets when the component mounts
-    //     fetchYourPetMeds();
-    // }, []);
-
-    // console.log("yourPetMeds", yourPetMeds)
-
-    // const fetchYourPetMeds = () => {
-    //     try {
-
-    //         dispatch({ type: 'SET_MEDS', });
-    //     } catch (error) {
-    //         console.error('Error fetching pets:', error);
-    //     }
-    // };
+    
     const handleMoreButtonClick = (med) => {
         // Perform actions when the "More" button is clicked for a medication
         // For example, you can display more details about the medication
