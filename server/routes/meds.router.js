@@ -6,12 +6,13 @@ const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
+
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log("in medsrouterGEt", req.params.id)
     
         console.log('/medications GET route');
         console.log('is authenticated?', req.isAuthenticated());
-        console.log('pet_id', req.body.pet_id);
+        //console.log('pet_id', req.body.pet_id);
         let queryText = `SELECT * FROM "medications" WHERE pet_id=$1`;
         
         console.log("in meds.routerGET: ", req.body)

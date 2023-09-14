@@ -11,21 +11,21 @@ export function YourPetMeds() {
     const dispatch = useDispatch()
     const history = useHistory();
 
-    useEffect(() => {
-        // Fetch your pets when the component mounts
-        fetchYourPetMeds();
-    }, []);
+    // useEffect(() => {
+    //     // Fetch your pets when the component mounts
+    //     fetchYourPetMeds();
+    // }, []);
 
-    console.log("yourPetMeds", yourPetMeds)
+    // console.log("yourPetMeds", yourPetMeds)
 
-    const fetchYourPetMeds = () => {
-        try {
+    // const fetchYourPetMeds = () => {
+    //     try {
 
-            dispatch({ type: 'SET_MEDS', });
-        } catch (error) {
-            console.error('Error fetching pets:', error);
-        }
-    };
+    //         dispatch({ type: 'SET_MEDS', });
+    //     } catch (error) {
+    //         console.error('Error fetching pets:', error);
+    //     }
+    // };
 
 
 
@@ -35,13 +35,13 @@ export function YourPetMeds() {
                 <h3><b>List of Medications</b></h3>
                 <div className='yourMeds'>
 
-                    {/* {yourPetMeds.map((med, index) => (
+                    {yourPetMeds.map((med, index) => (
                     <div key={index}>
                         <ul>
-                            <li>{medName}</li>
+                            <li>{med.med_name}</li>
                         </ul>
                     </div>
-                ))} */}
+                ))}
                 </div>
             </div>
         </>

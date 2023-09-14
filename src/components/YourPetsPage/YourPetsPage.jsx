@@ -6,6 +6,7 @@ import swal from 'sweetalert';
 
 function YourPetsPage() {
 
+    const yourPetMeds = useSelector((store) => store.medications)
     const yourPets = useSelector((store) => store.pets)
     const dispatch = useDispatch()
     const history = useHistory();
@@ -35,9 +36,30 @@ function YourPetsPage() {
         }
     };
 
-    const handleClickPetMeds = () => {
-        console.log("handleclickpetmeds")
+    const handleClickPetMeds = (props) => {
+        console.log("handleclickpetmeds", props)
+        let petID =props
+        dispatch({type: "FETCH_MEDS", payload: petID })
     }
+
+    useEffect(() => {
+        // Fetch your pets when the component mounts
+        fetchYourPetMeds();
+    }, []);
+
+    console.log("yourPetMeds", yourPetMeds)
+
+    const fetchYourPetMeds = () => {
+        try {
+
+            dispatch({ type: 'SET_MEDS', });
+        } catch (error) {
+            console.error('Error fetching pets:', error);
+        }
+    };
+
+
+
 
 
     const navigateToAddPetsPage = () => {
@@ -56,7 +78,7 @@ function YourPetsPage() {
                             {/* Make the pet image clickable to nav to petInfo page */}
                             {/* <p>Pet URL: {pet.pet_url}</p> */}
                             <Link to={`/petInfo/${pet.id}`}>
-                                <img src={pet.pet_url} alt={pet.pet_name} onClick={handleClickPetMeds}/>
+                                <img src={pet.pet_url} alt={pet.pet_name} onClick={() =>handleClickPetMeds(pet.id)}/>
                             </Link>
                             <p>Pet Name: {pet.pet_name}</p>
 

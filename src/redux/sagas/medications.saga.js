@@ -13,9 +13,10 @@ function* addMeds(action) {
     }
 }
 
-function* fetchMeds(){
+function* fetchMeds(action){
+    console.log("in fectchMEdsSaga", action.payload)
     try{
-        const response = yield axios.get('/api/medications')
+        const response = yield axios.get(`/api/medications/${action.payload}`)
         yield put({ type: 'SET_MEDS', payload: response.data})
     } catch (error){
         console.log('Med request failed', error)
@@ -23,6 +24,7 @@ function* fetchMeds(){
 }
 
 function* deleteMed(action) {
+    
     try {
         yield axios.delete(`/api/medications/${action.payload}`)
         console.log("in DELETEpetSAGA", action.payload)
