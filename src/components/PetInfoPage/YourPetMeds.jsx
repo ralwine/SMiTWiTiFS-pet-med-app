@@ -26,6 +26,12 @@ export function YourPetMeds() {
     //         console.error('Error fetching pets:', error);
     //     }
     // };
+    const handleMoreButtonClick = (med) => {
+        // Perform actions when the "More" button is clicked for a medication
+        // For example, you can display more details about the medication
+        console.log(`Clicked "More" for medication: ${med.med_name}`);
+        history.push(`/medInfo/${med.id}`)
+      };
 
 
 
@@ -40,6 +46,7 @@ export function YourPetMeds() {
                         <ul>
                             <li>{med.med_name}</li>
                         </ul>
+                        <button onClick={() => handleMoreButtonClick(med)}>More</button>
                     </div>
                 ))}
                 </div>

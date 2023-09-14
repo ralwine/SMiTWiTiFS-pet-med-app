@@ -6,10 +6,11 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 function MedInfoPage () {
 
     const history = useHistory();
+    const yourPets = useSelector((store) => store.pets)
 
     // nav back to Pet Info page without saved changes
     const navigateToPetInfoPage = () => {
-        history.push('/petInfo'); // Use push to navigate to another page
+        history.push(`/petInfo/${yourPets.id}`); // Use push to navigate to another page
     };
 
     return(
