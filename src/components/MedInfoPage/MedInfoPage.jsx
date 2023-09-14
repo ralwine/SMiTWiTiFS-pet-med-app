@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { DeleteMed } from './DeleteMed';
 
 function MedInfoPage () {
     //page for individual med
@@ -34,7 +35,7 @@ function MedInfoPage () {
                 <p>{selectedMedication ? selectedMedication.instructions : ''}</p>
             <button className='btn'>Edit Info</button>
             {/* DELETE functionailty needed here w/ pop-up */}
-            <button className='btn'>Delete Medication</button>
+            <DeleteMed />
          </div>
          <div className='buttons'>
                 <button className='btn' onClick={navigateToPetInfoPage}>Back to Your Pets</button>
@@ -48,3 +49,5 @@ function MedInfoPage () {
 }
 
 export default MedInfoPage;
+
+

@@ -23,6 +23,15 @@ function* fetchMeds(action){
     }
 }
 
+function* fetchYourMed(action) {
+    try {
+        const response = yield axios.get(`/api/medications/${action.payload}`)
+        yield put({ type: 'SET_MED', payload: response.data })
+    } catch (error) {
+        console.log('Med request failed', error)
+    }
+}
+
 function* deleteMed(action) {
     
     try {
@@ -40,6 +49,7 @@ function* medicationsSaga(){
     yield takeLatest('ADD_NEW_MED', addMeds)
     yield takeLatest('FETCH_MEDS', fetchMeds)
     yield takeLatest('DELETE_MED', deleteMed)
+    yield takeLatest('FETCH_YOUR_MED', fetchYourMed)
 }
 
 export default medicationsSaga;
