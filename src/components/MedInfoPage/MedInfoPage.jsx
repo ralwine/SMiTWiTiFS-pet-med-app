@@ -17,6 +17,24 @@ function MedInfoPage () {
 
     console.log("yourPetMed", id)
 
+    useEffect(() => {
+        // Fetch your med when the component mounts
+        fetchIndividualMed();
+    }, [id]);
+
+    const fetchIndividualMed = async () => {
+        try {
+            const response = await fetch(`/api/medications/${id}`); // Replace with your API endpoint
+
+            const data = await response.json();
+            console.log("in fetchIndMed: ", data)
+            dispatch({ type: 'SET_MED', payload: data });
+        } catch (error) {
+            console.error('Error fetching med:', error);
+        }
+    }
+
+
     const handleEditClick = () => {
         setIsEditing(true);
     };

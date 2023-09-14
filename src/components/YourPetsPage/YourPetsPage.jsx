@@ -73,7 +73,10 @@ function YourPetsPage() {
 
 
                 <div className='yourPets'>
-                    {yourPets.map((pet, index) => (
+                    {yourPets.map((pet, index) => {
+                        console.log("pet", pet)
+                        return(
+                        
                         <div key={index}>
                             {/* Make the pet image clickable to nav to petInfo page */}
                             {/* <p>Pet URL: {pet.pet_url}</p> */}
@@ -84,7 +87,7 @@ function YourPetsPage() {
 
 
                         </div>
-                    ))}
+                    )})}
                 </div>
 
             </div>

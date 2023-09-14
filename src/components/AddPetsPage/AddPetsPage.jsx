@@ -54,7 +54,7 @@ function AddPetsPage() {
                     },
                 });
 
-                history.push(`/petInfo/${petURL}/${petName}/${petBio}`);
+                history.push(`/yourPets`);
             } else {
                 // If the user clicks "Cancel" or closes the dialog, do nothing
             }
