@@ -30,9 +30,10 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
     if (req.isAuthenticated()) {
-        // console.log('/pet GETiD route');
-        // console.log('is authenticated?', req.isAuthenticated());
-        // console.log('user', req.user);
+        console.log('/pet GETiD route');
+        console.log('is authenticated?', req.isAuthenticated());
+        console.log('user', req.user);
+        console.log('hry', req.params.id)
         const petID = req.params.id;
         let queryText = 
             `SELECT
@@ -46,7 +47,7 @@ router.get('/:id', (req, res) => {
                 `
         pool.query(queryText, [petID])
             .then(results => {
-                //console.log('server /:id GET working')
+                console.log('server /:id GET working')
                 res.send(results.rows[0]);
             })
             .catch(err => {

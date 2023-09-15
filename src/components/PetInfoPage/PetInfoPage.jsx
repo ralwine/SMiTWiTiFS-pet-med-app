@@ -21,12 +21,14 @@ function PetInfoPage() {
         fetchIndividualPet();
     }, [id]);
     //Define state variables to store pet data
+
     const fetchIndividualPet = async () => {
         try {
+            console.log("FIP", id)
             const response = await fetch(`/api/pets/${id}`); // Replace with your API endpoint
-
+            
             const data = await response.json();
-            console.log("in fetchIndPet: ", data)
+            console.log("in fetchIndPet: ", data, id)
             dispatch({ type: 'SET_PET', payload: data });
         } catch (error) {
             console.error('Error fetching pet:', error);

@@ -40,8 +40,8 @@ function MedInfoPage () {
     };
 
     // nav back to Pet Info page without saved changes
-    const navigateToPetInfoPage = () => {
-        history.push(`/petInfo/${yourPets.id}`); // Use push to navigate to another page
+    const navigateToYourPetsPage = () => {
+        history.push(`/yourPets`); // Use push to navigate to another page
     };
 
     return(
@@ -56,7 +56,7 @@ function MedInfoPage () {
             <DeleteMed />
          </div>
          <div className='buttons'>
-                <button className='btn' onClick={navigateToPetInfoPage}>Back to Your Pets</button>
+                <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
                 {/* PUT functionality to be handled by submit button */}
                 {/* Will also need pop-up! */}
                 <button className='btn'>Submit</button>

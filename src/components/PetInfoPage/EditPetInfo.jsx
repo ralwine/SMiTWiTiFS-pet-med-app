@@ -10,9 +10,11 @@ export function EditPetInfo({ individualPet, onSave }) {
         setEditedInfo({ ...editedInfo, [name]: value });
     };
 
-    const handleSave = (e) => {
-        e.preventDefault()
+    const handleSave = (event) => {
+        event.preventDefault()
         onSave(editedInfo);
+
+        dispatch({ type: 'UPDATE_PET_INFO', payload: editedInfo });
 
         dispatch({ type: 'FETCH_PET_INFO' });
     };
@@ -26,6 +28,8 @@ export function EditPetInfo({ individualPet, onSave }) {
             <div>
                 <label htmlFor='petBio'>Pet Bio</label>
                 <textarea
+                    minWidth="400px"
+                    minHeight="400px"
                     id="petBio"
                     name="pet_info"
                     value={editedInfo.pet_info}
