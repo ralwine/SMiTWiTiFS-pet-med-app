@@ -22,17 +22,18 @@ function PetInfoPage() {
     }, [id]);
     //Define state variables to store pet data
 
-    const fetchIndividualPet = async () => {
-        try {
-            console.log("FIP", id)
-            const response = await fetch(`/api/pets/${id}`); // Replace with your API endpoint
+    const fetchIndividualPet =  () => {
+        // try {
+        //     console.log("FIP", id)
+        //     const response = await fetch(`/api/pets/${id}`); // Replace with your API endpoint
             
-            const data = await response.json();
-            console.log("in fetchIndPet: ", data, id)
-            dispatch({ type: 'SET_PET', payload: data });
-        } catch (error) {
-            console.error('Error fetching pet:', error);
-        }
+        //     const data = await response.json();
+        //     console.log("in fetchIndPet: ", data, id)
+        //     dispatch({ type: 'SET_PET', payload: data });
+        // } catch (error) {
+        //     console.error('Error fetching pet:', error);
+        // }
+        dispatch({type: 'FETCH_YOUR_PET', payload: id})
     }
 
     const handleEditClick = () => {
@@ -41,11 +42,11 @@ function PetInfoPage() {
 
     const handleSavePetInfo = (editedPetInfo) => {
         // Dispatch an action to update the pet info in the Redux store.
-        console.log("in handleSave", editedPetInfo)
-        dispatch({
-            type: 'UPDATE_PET_INFO',
-            payload: editedPetInfo
-        });
+        // console.log("in handleSave", editedPetInfo)
+        // dispatch({
+        //     type: 'UPDATE_PET_INFO',
+        //     payload: editedPetInfo
+        // });
         setIsEditing(false); // Exit edit mode
     };
 

@@ -119,7 +119,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
     pool.query(sqlText, sqlValues)
         .then((result) =>{
-            if(res.rowCount === 1) {
+            if(result.rowCount === 1) {
                 res.sendStatus(200);
             }else{
                 res.sendStatus(404);

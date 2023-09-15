@@ -12,11 +12,11 @@ export function EditPetInfo({ individualPet, onSave }) {
 
     const handleSave = (event) => {
         event.preventDefault()
-        onSave(editedInfo);
+        onSave();
 
         dispatch({ type: 'UPDATE_PET_INFO', payload: editedInfo });
 
-        dispatch({ type: 'FETCH_PET_INFO' });
+        //dispatch({ type: 'FETCH_PET_INFO' });
     };
 
     
@@ -28,8 +28,6 @@ export function EditPetInfo({ individualPet, onSave }) {
             <div>
                 <label htmlFor='petBio'>Pet Bio</label>
                 <textarea
-                    minWidth="400px"
-                    minHeight="400px"
                     id="petBio"
                     name="pet_info"
                     value={editedInfo.pet_info}
