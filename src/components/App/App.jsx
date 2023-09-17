@@ -42,12 +42,12 @@ function App() {
   return (
     
     <Router>
-      <div>
+      <div className='app-container'>
       <Nav />
       <CssBaseline />
       <Container
           
-          style={{  backgroundColor: 'dodgerBlue',flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+          style={{  borderRadius: '10px',backgroundColor: 'dodgerBlue',flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
         >
         
         <Switch>
