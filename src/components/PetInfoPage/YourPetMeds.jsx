@@ -40,9 +40,9 @@ export function YourPetMeds() {
                                 <li>{med.med_name}</li>
                             </ul>
                             <Button
-                            variant="contained" 
-                            color="primary" 
-                            onClick={() => handleMoreButtonClick(med)}>More</Button>
+                                variant="contained"
+                                color="primary"
+                                onClick={() => handleMoreButtonClick(med)}>More</Button>
                         </div>
                     ))}
                 </div>

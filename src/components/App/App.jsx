@@ -46,7 +46,7 @@ function App() {
       <Nav />
       <CssBaseline />
       <Container
-          maxWidth="lg" // Adjust the maxWidth as needed
+          
           style={{  backgroundColor: 'dodgerBlue',flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
         >
         

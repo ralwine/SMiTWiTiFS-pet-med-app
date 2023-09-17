@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { DeleteMed } from './DeleteMed';
+import { Box, Button } from '@mui/material';
 
-function MedInfoPage () {
+function MedInfoPage() {
     //page for individual med
     const dispatch = useDispatch()
     const history = useHistory();
@@ -44,23 +45,32 @@ function MedInfoPage () {
         history.push(`/yourPets`); // Use push to navigate to another page
     };
 
-    return(
+    return (
         <>
-         
-         <div>
-            {/* med name and instructions will append here */}
-            <h3>{selectedMedication ? selectedMedication.med_name : 'Medication Not Found'}</h3>
+
+            <div>
+                {/* med name and instructions will append here */}
+                <h3>{selectedMedication ? selectedMedication.med_name : 'Medication Not Found'}</h3>
                 <p>{selectedMedication ? selectedMedication.instructions : ''}</p>
-            <button className='btn'>Edit Info</button>
-            {/* DELETE functionailty needed here w/ pop-up */}
-            <DeleteMed />
-         </div>
-         <div className='buttons'>
+                <Button
+                    variant="contained"
+                    color="primary"
+                >Edit Info</Button>
+                {/* DELETE functionailty needed here w/ pop-up */}
+
+            </div>
+            <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                mt={3}>
+
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
                 {/* PUT functionality to be handled by submit button */}
                 {/* Will also need pop-up! */}
                 <button className='btn'>Submit</button>
-            </div>
+                <DeleteMed />
+            </Box>
 
         </>
     )

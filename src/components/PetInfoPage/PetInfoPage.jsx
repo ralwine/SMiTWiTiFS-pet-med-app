@@ -84,7 +84,10 @@ function PetInfoPage() {
                     <div>
                         <h3>Here are some things about me:</h3>
                         <p>{individualPet.pet_info}</p>
-                        <button className='btn' onClick={handleEditClick}>Edit Info</button>
+                        <Button
+                            variant="contained"
+                            color="primary" 
+                            onClick={handleEditClick}>Edit Info</Button>
                     </div>
                 </div>)}
             <div>
