@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button } from '@mui/material';
 
-export function EditMedInfo({individualMed, onSave}) {
+export function EditMedInfo({ individualMed, onSave }) {
     const [editedInfo, setEditedInfo] = useState(individualMed);
     const dispatch = useDispatch()
 
@@ -19,7 +19,7 @@ export function EditMedInfo({individualMed, onSave}) {
 
 
     };
-}
+
 
 // textarea allows for flexible edit box!
 return (<>

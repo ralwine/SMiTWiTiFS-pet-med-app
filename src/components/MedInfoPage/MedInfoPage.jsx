@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { DeleteMed } from './DeleteMed';
+import { EditMedInfo } from './EditMedInfo';
 import { Box, Button } from '@mui/material';
 
 function MedInfoPage() {
@@ -10,11 +11,11 @@ function MedInfoPage() {
     const dispatch = useDispatch()
     const history = useHistory();
     const yourPets = useSelector((store) => store.pets)
-    const yourPetMed = useSelector((store) => store.medications)
+    const individualMed = useSelector((store) => store.medications)
     const { id } = useParams();
     const [isEditing, setIsEditing] = useState(false);
 
-    const selectedMedication = yourPetMed.find((med) => med.id === parseInt(id));
+    const selectedMedication = individualMed.find((med) => med.id === parseInt(id));
 
     console.log("yourPetMed", id)
 
@@ -23,16 +24,10 @@ function MedInfoPage() {
         fetchIndividualMed();
     }, [id]);
 
-    const fetchIndividualMed = async () => {
-        try {
-            const response = await fetch(`/api/medications/${id}`); // Replace with your API endpoint
+    const fetchIndividualMed = () => {
 
-            const data = await response.json();
-            console.log("in fetchIndMed: ", data)
-            dispatch({ type: 'SET_MED', payload: data });
-        } catch (error) {
-            console.error('Error fetching med:', error);
-        }
+        dispatch({ type: 'FETCH_YOUR_MED', payload: id });
+
     }
 
 
@@ -53,18 +48,20 @@ function MedInfoPage() {
 
     return (
         <>
+            {isEditing ? (
+                <EditMedInfo individualMed={individualMed} onSave={handleSaveMedInfo} />
+            ) : (
+                <div>
+                    {/* med name and instructions will append here */}
+                    <h3>{selectedMedication ? selectedMedication.med_name : 'Medication Not Found'}</h3>
+                    <p>{selectedMedication ? selectedMedication.instructions : ''}</p>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleEditClick}>Edit Info</Button>
+                    {/* DELETE functionailty needed here w/ pop-up */}
 
-            <div>
-                {/* med name and instructions will append here */}
-                <h3>{selectedMedication ? selectedMedication.med_name : 'Medication Not Found'}</h3>
-                <p>{selectedMedication ? selectedMedication.instructions : ''}</p>
-                <Button
-                    variant="contained"
-                    color="primary"
-                >Edit Info</Button>
-                {/* DELETE functionailty needed here w/ pop-up */}
-
-            </div>
+                </div>)}
             <Box
                 display='flex'
                 justifyContent='center'
@@ -74,7 +71,7 @@ function MedInfoPage() {
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
                 {/* PUT functionality to be handled by submit button */}
                 {/* Will also need pop-up! */}
-                
+
                 <DeleteMed />
             </Box>
 

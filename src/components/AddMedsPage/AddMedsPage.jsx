@@ -41,8 +41,8 @@ function AddMedsPage() {
             }
         })
     }
-    
-    
+
+
     // nav back to Pet Info page without saved changes
     const navigateToPetInfoPage = () => {
         history.push(`/petInfo/${petID.id}`); // Use push to navigate to another page
@@ -50,37 +50,39 @@ function AddMedsPage() {
 
     return (
         <>
-            <form className='formPanel' onSubmit={addNewMed}>
-                <h2>Add Med</h2>
-                <div>
-                    <label htmlFor='medName'>
-                        Medication or Supplement Name:
-                        <input
-                            type='text'
-                            name='medName'
-                            placeholder='Name of medication'
-                            value={medName}
-                            required onChange={(event) => setMedName(event.target.value)}
-                        />
-                    </label>
-                </div>
-                <div>
-                    <label htmlFor='medDetails'>
-                        Instructions:
-                        <input
-                            type='text'
-                            name='medDetails'
-                            placeholder='include things like dosage, type (pill, injection, etc), when to administer, etc.'
-                            value={medDetails}
-                            required onChange={(event) => setMedDetails(event.target.value)}
-                        />
-                    </label>
-                </div>
-                <div>
-                    {/* need pop-up here and onChange event for POST */}
-                    <button className='formBtn' onClick={addNewMed}>Submit</button>
-                </div>
-            </form>
+            <div className='container'>
+                <form className='formPanel' onSubmit={addNewMed}>
+                    <h2>Add Med</h2>
+                    <div>
+                        <label htmlFor='medName'>
+                            Medication or Supplement Name:
+                            <input
+                                type='text'
+                                name='medName'
+                                placeholder='Name of medication'
+                                value={medName}
+                                required onChange={(event) => setMedName(event.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        <label htmlFor='medDetails'>
+                            Instructions:
+                            <input
+                                type='text'
+                                name='medDetails'
+                                placeholder='include things like dosage, type (pill, injection, etc), when to administer, etc.'
+                                value={medDetails}
+                                required onChange={(event) => setMedDetails(event.target.value)}
+                            />
+                        </label>
+                    </div>
+                    <div>
+                        {/* need pop-up here and onChange event for POST */}
+                        <button className='formBtn' onClick={addNewMed}>Submit</button>
+                    </div>
+                </form>
+            </div>
             <div className='buttons'>
                 <Link to={`/petInfo/${petID.id}`}>
                     <button className='btn' onClick={navigateToPetInfoPage}>Back to Pet Info</button>

@@ -32,6 +32,27 @@ function* fetchYourMed(action) {
     }
 }
 
+function* updateMedInfo(action) {
+    try {
+        console.log("in PUTpetSAGA", action.payload.id)
+        yield axios.put(`/api/pets/${action.payload.id}`, action.payload )
+        
+        //call fetch ind pet
+        yield put({ type: 'FETCH_YOUR_MED', payload: action.payload.id })
+    } catch(error) {
+        console.log('error in PUT/Pet saga', error)
+    }
+}
+
+function* fetchMedInfo(action){
+    try{
+        const response = yield axios.get(`/api/medications/${action.payload}`)
+        yield put({type: 'RESET_MED', payload:response.data})
+    } catch(error) {
+        console.log("reset info failed in saga", error)
+    }
+}
+
 function* deleteMed(action) {
     
     try {
@@ -50,8 +71,8 @@ function* medicationsSaga(){
     yield takeLatest('FETCH_MEDS', fetchMeds)
     yield takeLatest('DELETE_MED', deleteMed)
     yield takeLatest('FETCH_YOUR_MED', fetchYourMed)
-    //yield takeLatest('UPDATE_MED_INFO', updateMedInfo)
-    //yield takeLatest('FETCH_MED_INFO', fetchMedInfo)
+    yield takeLatest('UPDATE_MED_INFO', updateMedInfo)
+    yield takeLatest('FETCH_MED_INFO', fetchMedInfo)
 }
 
 export default medicationsSaga;

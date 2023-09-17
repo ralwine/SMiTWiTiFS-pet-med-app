@@ -68,7 +68,7 @@ function AddPetsPage() {
 
     return (
         <>
-
+        <div className='container'>
             <form className='formPanel' onSubmit={addNewPet}>
                 <h2>Add Pet</h2>
                 <div>
@@ -112,6 +112,7 @@ function AddPetsPage() {
                     <button className='formBtn' onClick={addNewPet}>Submit</button>
                 </div>
             </form>
+            </div>
             <div className='buttons'>
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
 
