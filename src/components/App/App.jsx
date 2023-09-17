@@ -24,7 +24,9 @@ import AddMedsPage from '../AddMedsPage/AddMedsPage'
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import swal from 'sweetalert';
+
+import { CssBaseline, Container } from '@mui/material';
+
 
 import './App.css';
 
@@ -38,9 +40,16 @@ function App() {
   }, [dispatch]);
 
   return (
+    
     <Router>
       <div>
-        <Nav />
+      <Nav />
+      <CssBaseline />
+      <Container
+          maxWidth="lg" // Adjust the maxWidth as needed
+          style={{  backgroundColor: 'dodgerBlue',flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}
+        >
+        
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -157,8 +166,10 @@ function App() {
           </Route>
         </Switch>
         <Footer />
+        </Container>
       </div>
     </Router>
+    
   );
 }
 

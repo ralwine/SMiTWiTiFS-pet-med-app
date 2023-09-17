@@ -14,7 +14,7 @@ function AddMedsPage() {
     const history = useHistory();
 
 
-    console.log('petID: ', petID.id)
+    console.log('petID: ', petID.id, medName, medDetails)
     const addNewMed = (event) => {
         event.preventDefault();
 
@@ -35,7 +35,7 @@ function AddMedsPage() {
                     }
                 })
 
-                history.push(`/petInfo/${petID.id}/${medName}/${medDetails}`)
+                history.push(`/petInfo/${petID.id}`)
             } else {
 
             }

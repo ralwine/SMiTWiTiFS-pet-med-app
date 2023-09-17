@@ -7,10 +7,14 @@ import swal from 'sweetalert';
 import { DeletePet } from './DeletePet';
 import { EditPetInfo } from './EditPetInfo';
 import { YourPetMeds } from './YourPetMeds'
+import { Box, Button } from '@mui/material';
 
 function PetInfoPage() {
     //page for individual pet
+    const yourPetMeds = useSelector((store) => store.medications)
+    const yourPets = useSelector((store) => store.pets)
     const individualPet = useSelector((store) => store.petinfo)
+    const medList = useSelector((store) => store.medinfo)
     const dispatch = useDispatch()
     const history = useHistory();
     const { id } = useParams();
@@ -22,31 +26,35 @@ function PetInfoPage() {
     }, [id]);
     //Define state variables to store pet data
 
-    const fetchIndividualPet =  () => {
-        // try {
-        //     console.log("FIP", id)
-        //     const response = await fetch(`/api/pets/${id}`); // Replace with your API endpoint
-            
-        //     const data = await response.json();
-        //     console.log("in fetchIndPet: ", data, id)
-        //     dispatch({ type: 'SET_PET', payload: data });
-        // } catch (error) {
-        //     console.error('Error fetching pet:', error);
-        // }
-        dispatch({type: 'FETCH_YOUR_PET', payload: id})
+    const fetchIndividualPet = () => {
+
+        dispatch({ type: 'FETCH_YOUR_PET', payload: id })
     }
+
+    useEffect(() => {
+        // Fetch your pets when the component mounts
+        fetchYourPetMeds();
+    }, []);
+
+    console.log("yourPetMeds", yourPetMeds)
+
+    const fetchYourPetMeds = () => {
+        try {
+
+            dispatch({ type: 'SET_MEDS', });
+        } catch (error) {
+            console.error('Error fetching pets:', error);
+        }
+    };
+
+
 
     const handleEditClick = () => {
         setIsEditing(true);
     };
 
     const handleSavePetInfo = (editedPetInfo) => {
-        // Dispatch an action to update the pet info in the Redux store.
-        // console.log("in handleSave", editedPetInfo)
-        // dispatch({
-        //     type: 'UPDATE_PET_INFO',
-        //     payload: editedPetInfo
-        // });
+
         setIsEditing(false); // Exit edit mode
     };
 
@@ -64,10 +72,10 @@ function PetInfoPage() {
             {isEditing ? (
                 <EditPetInfo individualPet={individualPet} onSave={handleSavePetInfo} />
             ) : (
-                <div>
+                <div className='container'>
                     <div>
                         {/* Pet image, name, bio appending here*/}
-                        <img src={individualPet.pet_url} alt={individualPet.pet_name} />
+                        <img className='pets' src={individualPet.pet_url} alt={individualPet.pet_name} />
                     </div>
 
                     <div>
@@ -83,14 +91,19 @@ function PetInfoPage() {
                 <YourPetMeds />
             </div>
 
-            <div className='buttons'>
+            <Box
+                display='flex'
+                justifyContent='center'
+                alignItems='center'
+                mt={3}>
 
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
                 <Link to={`/addMeds/${id}`}>
                     <button className='btn' onClick={navigateToAddMedsPage}>Add Medication</button>
                 </Link>
                 <DeletePet />
-            </div>
+            </Box>
+
         </>
     )
 }

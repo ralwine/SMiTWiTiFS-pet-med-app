@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, Link } from 'react-router-dom/cjs/react-router-dom.min';
-
+import { Button } from '@mui/material';
 import swal from 'sweetalert';
 
 function YourPetsPage() {
@@ -18,14 +18,6 @@ function YourPetsPage() {
 
     console.log("infopage", yourPets)
 
-    // GET pets
-    // const fetchYourPets =  () => {
-    //   //event.preventDefault();
-    //   console.log("infopage.jsx/yourpets: ", yourPets)
-    //   dispatch({ type: 'SET_PETS', payload: yourPets })
-
-    // }
-
     const fetchYourPets = async () => {
         try {
             const response = await fetch('/api/pets'); // Replace with your API endpoint
@@ -38,29 +30,9 @@ function YourPetsPage() {
 
     const handleClickPetMeds = (props) => {
         console.log("handleclickpetmeds", props)
-        let petID =props
-        dispatch({type: "FETCH_MEDS", payload: petID })
+        let petID = props
+        dispatch({ type: "FETCH_MEDS", payload: petID })
     }
-
-    useEffect(() => {
-        // Fetch your pets when the component mounts
-        fetchYourPetMeds();
-    }, []);
-
-    console.log("yourPetMeds", yourPetMeds)
-
-    const fetchYourPetMeds = () => {
-        try {
-
-            dispatch({ type: 'SET_MEDS', });
-        } catch (error) {
-            console.error('Error fetching pets:', error);
-        }
-    };
-
-
-
-
 
     const navigateToAddPetsPage = () => {
         history.push('/addPets'); // Use push to navigate to another page
@@ -75,19 +47,22 @@ function YourPetsPage() {
                 <div className='yourPets'>
                     {yourPets.map((pet, index) => {
                         console.log("pet", pet)
-                        return(
-                        
-                        <div key={index}>
-                            {/* Make the pet image clickable to nav to petInfo page */}
-                            {/* <p>Pet URL: {pet.pet_url}</p> */}
-                            <Link to={`/petInfo/${pet.id}`}>
-                                <img src={pet.pet_url} alt={pet.pet_name} onClick={() =>handleClickPetMeds(pet.id)}/>
-                            </Link>
-                            <p>Pet Name: {pet.pet_name}</p>
+                        return (
+
+                            <div key={index}>
+                                {/* Make the pet image clickable to nav to petInfo page */}
+                                {/* <p>Pet URL: {pet.pet_url}</p> */}
+                                <Link to={`/petInfo/${pet.id}`}>
+                                    
+                                        <img className='pets' src={pet.pet_url} alt={pet.pet_name} onClick={() => handleClickPetMeds(pet.id)} />
+                                    
+                                </Link>
+                                <h3>{pet.pet_name}</h3>
 
 
-                        </div>
-                    )})}
+                            </div>
+                        )
+                    })}
                 </div>
 
             </div>

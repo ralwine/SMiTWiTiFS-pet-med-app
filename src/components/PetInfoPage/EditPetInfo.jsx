@@ -16,14 +16,15 @@ export function EditPetInfo({ individualPet, onSave }) {
 
         dispatch({ type: 'UPDATE_PET_INFO', payload: editedInfo });
 
-        //dispatch({ type: 'FETCH_PET_INFO' });
+
     };
 
-    
+
 
 
     // textarea allows for flexible edit box!
     return (<>
+        <div className='container'>
         <form className='formPanel'>
             <div>
                 <label htmlFor='petBio'>Pet Bio</label>
@@ -40,6 +41,7 @@ export function EditPetInfo({ individualPet, onSave }) {
                 </button>
             </div>
         </form>
+    </div >
 
     </>);
 }

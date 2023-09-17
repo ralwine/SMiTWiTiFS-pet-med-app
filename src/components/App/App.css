@@ -38,6 +38,7 @@ Button
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
+  margin-right: 10px;
   
 }
 
@@ -132,3 +133,12 @@ input {
   margin: 5px;
   margin-bottom: 10px;
 }
+
+.pets{
+  width: 250px;
+  height: 350px;
+  border: solid black;
+  border-style: outset
+}
+
+
