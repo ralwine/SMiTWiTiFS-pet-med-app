@@ -62,4 +62,30 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
             res.sendStatus(500)
         })
 });
+
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+
+    console.log("hey", req.params, req.body)
+    const medID = req.params.id;
+    const newMedInfo = req.body.pet_info;
+    console.log("in medsRouter PUT", medID, newMedInfo)
+    
+    const sqlText = `
+        UPDATE "meds" SET "instructions" =$1
+        WHERE "id" =$2 AND "med_id" = $3`;
+    const sqlValues = [newMedInfo, medID];
+    console.log("in petsRouter PUT", medID, newMedInfo, req.user.id)
+
+    pool.query(sqlText, sqlValues)
+        .then((result) =>{
+            if(result.rowCount === 1) {
+                res.sendStatus(200);
+            }else{
+                res.sendStatus(404);
+            }
+        }).catch((error)=>{
+            console.error("problem w/PUT in medsRouter", error)
+            res.sendStatus(500)
+        })
+});
 module.exports = router

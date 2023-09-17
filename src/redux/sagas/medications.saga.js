@@ -50,6 +50,8 @@ function* medicationsSaga(){
     yield takeLatest('FETCH_MEDS', fetchMeds)
     yield takeLatest('DELETE_MED', deleteMed)
     yield takeLatest('FETCH_YOUR_MED', fetchYourMed)
+    //yield takeLatest('UPDATE_MED_INFO', updateMedInfo)
+    //yield takeLatest('FETCH_MED_INFO', fetchMedInfo)
 }
 
 export default medicationsSaga;

@@ -40,6 +40,12 @@ function MedInfoPage() {
         setIsEditing(true);
     };
 
+    const handleSaveMedInfo = (editedMedInfo) => {
+
+        setIsEditing(false); // Exit edit mode
+    };
+
+
     // nav back to Pet Info page without saved changes
     const navigateToYourPetsPage = () => {
         history.push(`/yourPets`); // Use push to navigate to another page
@@ -68,7 +74,7 @@ function MedInfoPage() {
                 <button className='btn' onClick={navigateToYourPetsPage}>Back to Your Pets</button>
                 {/* PUT functionality to be handled by submit button */}
                 {/* Will also need pop-up! */}
-                <button className='btn'>Submit</button>
+                
                 <DeleteMed />
             </Box>
 
