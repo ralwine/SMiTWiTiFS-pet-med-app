@@ -5,14 +5,10 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
-
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 //import InfoPage from '../InfoPage/InfoPage';//aka YourPets page
@@ -24,10 +20,9 @@ import AddMedsPage from '../AddMedsPage/AddMedsPage'
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
 import { CssBaseline, Container } from '@mui/material';
-
-
+import MaterialTheme from '../MaterialTheme/MaterialTheme';
+import { ThemeProvider } from '@mui/material/styles';
 import './App.css';
 
 function App() {
@@ -39,8 +34,11 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+  // changes to the material ui color palette
+  let theme = MaterialTheme();
+
   return (
-    
+    <ThemeProvider theme={theme}>
     <Router>
       <div className='app-container'>
       <Nav />
@@ -169,7 +167,7 @@ function App() {
         </Container>
       </div>
     </Router>
-    
+    </ThemeProvider>
   );
 }
 
